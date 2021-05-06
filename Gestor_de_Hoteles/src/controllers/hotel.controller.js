@@ -50,7 +50,29 @@ function addRoom(req,res){
     })
 }
 
+function getRoomsHotel(req,res){
+    var hotelID = req.params.IdHotel;
+
+    Hotel.findById(hotelID, (err, hotelFound) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!hotelFound) return res.status(500).send({ message: 'Hotel not founded' })
+
+        return res.status(200).send( {RoomsFound: hotelFound.bedrooms} )
+    })
+}
+
+function getHotels(req,res){
+    Hotel.find((err, hotelsFound) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!hotelsFound) return res.status(500).send({ message: 'No hotel was found' })
+
+        return res.status(200).send( {hotelsFound} )
+    })
+}
+
 module.exports = {
     addHotel,
-    addRoom
+    addRoom,
+    getRoomsHotel,
+    getHotels
 }
