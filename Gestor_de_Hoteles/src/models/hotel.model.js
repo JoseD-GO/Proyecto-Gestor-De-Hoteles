@@ -9,7 +9,7 @@ var HotelSchema = Schema({
     phoneNumber: String,
     description: String,
     popularity: { type: Number, default: 0 },
-    //numberOfRooms: { type: Number, default: 0 },
+    numberOfRooms: { type: Number, default: 0 },
     bedrooms:[{
         number: { type: Number, default: 0 },
         numberBeds: { type: Number, default: 0 },
