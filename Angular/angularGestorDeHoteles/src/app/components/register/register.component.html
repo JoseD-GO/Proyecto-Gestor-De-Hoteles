@@ -1,1 +1,54 @@
-<p>register works!</p>
+<div class="flex flex-col p-2 h-screen">
+    <div class="max-w-md m-auto">
+        <h1 class="text-5xl text-center animate__animated animate__backInLeft">JD Hotel</h1>
+        <p class="text-2xl text-center animate__animated animate__backInRight">Registro</p>
+
+        <div class="border p-5 my-5 rounded animate__animated animate__backInUp">
+            <div>
+                <label for="inputName" class="mb-2">Nombre</label>
+                <input
+                  type="text"
+                  class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100" name="name" id="inputName"
+                  #name="ngModel" [(ngModel)]="user.name">
+            </div>
+            <div>
+                <label for="inputLastname" class="mb-2">Apellido</label>
+                <input
+                  type="text"
+                  class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100" name="lastname" id="inputLastname"
+                  #lastname="ngModel" [(ngModel)]="user.lastname">
+              </div>
+          <div>
+            <label for="inputUsername" class="mb-2">Usuario</label>
+            <input
+              type="text"
+              class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100" name="username" id="inputUsername"
+              #username="ngModel" [(ngModel)]="user.username">
+          </div>
+          <div>
+            <label for="inputEmail" class="mb-2">Email</label>
+            <input
+              type="email"
+              class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100" name="email" id="inputEmail"
+              #email="ngModel" [(ngModel)]="user.email">
+          </div>
+          <div class="py-2">
+            <label for="inputPassword" class="mb-2">Contraseña</label>
+            <input
+              type="password"
+              class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100" name="password" id="inputPassword"
+              #password="ngModel" [(ngModel)]="user.password">
+          </div>
+          <div class="py-2">
+            <button
+                type="submit"
+                class="w-full rounded bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-solid border-2 border-green-600" (click)="register()">
+              Registrar
+            </button>
+          </div>
+          <div>
+              <p class="text-sm text-center">¿Ya tienes una cuenta? <a class="text-blue-700 hover:font-bold" routerLink="/login">Inicia sesión</a></p>
+          </div>
+        </div>
+    </div>
+</div>
