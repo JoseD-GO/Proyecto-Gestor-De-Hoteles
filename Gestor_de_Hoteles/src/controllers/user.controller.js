@@ -118,18 +118,19 @@ function registerUser(req,res){
     var params = req.body
 
     delete params.rol
+    console.log(params);
 
-    if(params.name && params.lastname && params.user && params.email && params.password){
+    if(params.name && params.lastname && params.username && params.email && params.password){
         userModel.name = params.name
         userModel.lastname = params.lastname
-        userModel.user = params.user
+        userModel.username = params.username
         userModel.email = params.email
         userModel.password = params.password
         userModel.rol = 'ROL_USER'
         userModel.image = null
 
         User.find( { $or:[
-            { user: userModel.user },
+            { username: userModel.username },
             { email: userModel.email }
         ] } ).exec((err, userFound ) => {
             if(err) res.status(500).send({ message: 'Error in the request' })
