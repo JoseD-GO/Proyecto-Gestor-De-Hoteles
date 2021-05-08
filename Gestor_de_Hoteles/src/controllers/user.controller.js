@@ -7,24 +7,24 @@ const jwt = require('../services/user.jwt')
 
 function createAdmin(req,res){
     var userModel = new User()
-    var user = "ADMIN"
+    var username = "ADMIN"
     var pass = "123456"
     var rol = "ROL_ADMIN"
     var email = "admin@email.com"
 
-    if(user === "ADMIN" && pass === "123456" && rol === "ROL_ADMIN" && email === 'admin@email.com'){
-        userModel.user = user
+    if(username === "ADMIN" && pass === "123456" && rol === "ROL_ADMIN" && email === 'admin@email.com'){
+        userModel.username = username
         userModel.password = pass
         userModel.rol = rol
         userModel.email = email
 
         User.find( { $or: [
-            { user: userModel.user }
+            { username: userModel.username }
         ] } ).exec((err, userFound) => {
             if(err) return console.log("Error in the request")
 
             if(userFound && userFound.length >= 1){
-                console.log(`User ${userModel.user} already exists`)
+                console.log(`User ${userModel.username} already exists`)
             }else {
                 bcrypt.hash(pass, null, null, (err, passEncrypted) =>{
                     userModel.password = passEncrypted
@@ -46,7 +46,7 @@ function createAdmin(req,res){
 function login(req,res){
     var params = req.body
 
-    User.findOne( { user: params.user }, (err, userFound) => {
+    User.findOne( { username: params.username }, (err, userFound) => {
         if(err) return res.status(500).send({ message: 'Error in the request' })
         
         if(userFound){
@@ -56,7 +56,7 @@ function login(req,res){
                         return res.status(200).send({ token: jwt.createToken(userFound) })
                     }else {
                         userFound.password = undefined
-                        return res.status(500).send({ userFound })
+                        return res.status(200).send({ userFound })
                     }
                 }else {
                     return res.status(404).send({ mensaje: 'The user couldnt be identified' })
@@ -76,17 +76,17 @@ function registerAdminHotel(req,res){
 
     delete params.rol
 
-    if(params.name && params.lastname && params.user && params.email && params.password){
+    if(params.name && params.lastname && params.username && params.email && params.password){
         userModel.name = params.name
         userModel.lastname = params.lastname
         userModel.email = params.email
-        userModel.user = params.user
+        userModel.username = params.username
         userModel.password = params.password
         userModel.rol = 'ROL_ADMIN_HOTEL'
         userModel.image = null
 
         User.find({ $or: [
-            { user: userModel.user },
+            { username: userModel.username },
             { email: userModel.email }
         ] }).exec((err, userFound) => {
             if(err) return res.status(500).send({ message: 'Error in the request' })
