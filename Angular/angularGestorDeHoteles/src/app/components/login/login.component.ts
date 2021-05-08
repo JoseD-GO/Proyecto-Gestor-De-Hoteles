@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this._usuarioService.login(this.userModel,'true').subscribe(
+    this._usuarioService.login(this.userModel).subscribe(
       response => {
         this.identity = response.userFound;
         localStorage.setItem('identity', JSON.stringify(this.identity));
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'usuario logeado correctamente',
+          title: 'Usuario logeado correctamente!',
           showConfirmButton: false,
           timer: 1500
         })

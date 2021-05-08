@@ -9,6 +9,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class UserService {
   public url: String;
+  public identity;
+  public token;
   public headersVar = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(public _http: HttpClient) {
@@ -33,5 +35,26 @@ export class UserService {
     let params = JSON.stringify(user)
 
     return this._http.post(`${this.url}/login`, params, { headers: this.headersVar })
+  }
+
+  getIdentity(){
+    var identityD = JSON.parse(localStorage.getItem('identity'));
+    if(identityD != 'undefined'){
+      this.identity = identityD;
+    }else {
+      this.identity = null;
+    }
+    return this.identity;
+  }
+
+  getToken(){
+    var tokenD = localStorage.getItem('token');
+    if(tokenD != 'undefined'){
+      this.token = tokenD;
+    }else {
+      this.token = null
+    }
+
+    return this.token;
   }
 }
