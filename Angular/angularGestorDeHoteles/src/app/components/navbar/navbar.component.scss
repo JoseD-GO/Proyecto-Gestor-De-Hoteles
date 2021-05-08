@@ -7,7 +7,19 @@ header {
   background-color: #424242;
 }
 
+#liDropdown {
+  background-color: #424242;
+}
+
 li:hover {
   background-color: #6d6d6d;
+}
+
+#liDropdown:hover {
+  background-color: #6d6d6d;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
 
