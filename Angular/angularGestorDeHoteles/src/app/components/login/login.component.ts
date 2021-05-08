@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import Swal from "sweetalert2"
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   public token;
   public identity;
 
-  constructor(private _usuarioService: UserService) {
+  constructor(private _usuarioService: UserService,
+    private _router: Router) {
     this.userModel = new User("","","","","","","","");
    }
 
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this._router.navigate(['/home'])
       },
       error => {
         Swal.fire({
