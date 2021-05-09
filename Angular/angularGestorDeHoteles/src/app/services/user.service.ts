@@ -24,8 +24,9 @@ export class UserService {
   }
 
   getUsers(): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', this.getToken())
 
-    return this._http.get(`${this.url}/registeredUsers`, { headers: this.headersVar })
+    return this._http.get(`${this.url}/registeredUsers`, { headers: headersToken })
   }
 
   login(user, getToken = null): Observable<any>{

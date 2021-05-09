@@ -118,7 +118,6 @@ function registerUser(req,res){
     var params = req.body
 
     delete params.rol
-    console.log(params);
 
     if(params.name && params.lastname && params.username && params.email && params.password){
         userModel.name = params.name

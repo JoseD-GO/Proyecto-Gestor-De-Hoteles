@@ -5,7 +5,7 @@ var Schema = mongoose.Schema
 
 var HotelSchema = Schema({
     name: String,
-    direction: String,
+    address: String,
     phoneNumber: String,
     description: String,
     popularity: { type: Number, default: 0 },
@@ -16,6 +16,7 @@ var HotelSchema = Schema({
         status: String,
         price: { type: Number, default: 0 }
     }],
+    imgLink: String,
     idAdminHotel: { type: Schema.Types.ObjectId, ref: 'Users' }
 })
 

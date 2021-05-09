@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   public user: User;
+  public Pmessage: "The user already exists";
+  public Smessage: "User couldn´t be registered";
 
   constructor(private _userService: UserService, private _router: Router) {
     this.user = new User("","","","","","","","")
@@ -23,8 +25,6 @@ export class RegisterComponent implements OnInit {
   register(){
     this._userService.registerUser(this.user).subscribe(
       response => {
-        this._router.navigate(['/login'])
-        console.log(response)
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -32,9 +32,9 @@ export class RegisterComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this._router.navigate(['/login'])
       },
       error => {
-        console.log(<any>error)
         Swal.fire({
           position: 'center',
           icon: 'error',
@@ -42,6 +42,49 @@ export class RegisterComponent implements OnInit {
           showConfirmButton: true,
           timer: 1500
         })
+        /*var errorD = JSON.stringify(error.error.message);
+        console.log(typeof errorD);
+        switch (errorD) {
+          case this.Pmessage:
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Usuario o email ya existen',
+              showConfirmButton: true,
+              timer: 1500
+            })
+            break;
+            case this.Smessage:
+              Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Error al registrar usuario!',
+                showConfirmButton: true,
+                timer: 1500
+              })
+            break;
+
+          default:
+            break;
+        }*/
+
+        /*if(errorD = this.Smessage){
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error al registrar usuario!',
+            showConfirmButton: true,
+            timer: 1500
+          })
+        }else if(errorD = this.Pmessage){
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Usuario o email ya existen',
+            showConfirmButton: true,
+            timer: 1500
+          })
+        }*/
       }
     )
   }

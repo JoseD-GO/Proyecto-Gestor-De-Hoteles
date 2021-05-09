@@ -11,8 +11,8 @@
 <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
   <nav>
     <ul class="lg:flex items-center justify-between text-base text-white pt-4 lg:pt-0">
-      <li *ngIf="rol === 'ROL_ADMIN'"><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" routerLink="#">Usuarios</a></li>
-      <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" routerLink="#">Hoteles</a></li>
+      <li *ngIf="rol === 'ROL_ADMIN'"><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" routerLink="/users">Usuarios</a></li>
+      <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" routerLink="/hotels">Hoteles</a></li>
       <li *ngIf="rol === 'ROL_USER'"><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" routerLink="#">Mis Reservaciones</a></li>
       <!-- <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#">otro</a></li>
       <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2" href="#">otro</a></li> -->
