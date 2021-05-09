@@ -2,7 +2,7 @@
 <div class="text-center">
   <h1 class="text-6xl mt-4">Hoteles</h1>
 </div>
-<div class="container mx-auto mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+<div class="container mx-auto mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 mb-8">
       <div *ngFor="let hote of HotelModelGet">
         <div class="rounded-lg overflow-hidden">
           <div class="relative overflow-hidden pb-60">
@@ -19,7 +19,7 @@
                 <p>{{hote.address}}&nbsp;</p>
                 <p class="text-left">{{hote.phoneNumber}}</p>
               </div>
-              <p class="leading-7">
+              <p class="leading-7 text-justify">
                 {{hote.description}}
               </p>
               <div class="ml-4 mt-10 flex items-center">
