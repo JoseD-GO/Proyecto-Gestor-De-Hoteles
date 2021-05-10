@@ -12,5 +12,6 @@ api.post('/registerUser', userController.registerUser)
 api.put('/editUser', md_authentication.ensureAuth, userController.editUser)
 api.delete('/deleteUser', md_authentication.ensureAuth, userController.deleteUser)
 api.get('/registeredUsers', md_authentication.ensureAuth, userController.registeredUsers)
+api.get('/getUsersAdminHotel', md_authentication.ensureAuth, userController.getUsersAdminHotel)
 
 module.exports = api

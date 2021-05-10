@@ -10,12 +10,12 @@ function addHotel(req,res){
 
     if(req.user.rol != 'ROL_ADMIN') return res.status(500).send({ message: 'You dont have the permissions' })
 
-    if(params.name && params.address && params.phoneNumber && params.description && params.img && params.idAdminHotel){
+    if(params.name && params.address && params.phoneNumber && params.description && params.imgLink && params.idAdminHotel){
         hotelModel.name = params.name
         hotelModel.address = params.address
         hotelModel.phoneNumber = params.phoneNumber
         hotelModel.description = params.description
-        hotelModel.imgLink = params.img
+        hotelModel.imgLink = params.imgLink
         hotelModel.idAdminHotel = params.idAdminHotel
 
         hotelModel.save((err, hotelSaved) =>{

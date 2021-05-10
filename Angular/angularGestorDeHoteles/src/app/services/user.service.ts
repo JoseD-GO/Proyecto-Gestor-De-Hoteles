@@ -29,6 +29,12 @@ export class UserService {
     return this._http.get(`${this.url}/registeredUsers`, { headers: headersToken })
   }
 
+  getUsersAdminHotel(): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', this.getToken())
+
+    return this._http.get(`${this.url}/getUsersAdminHotel`, { headers: headersToken })
+  }
+
   login(user, getToken = null): Observable<any>{
     if(getToken != null){
       user.getToken = getToken;

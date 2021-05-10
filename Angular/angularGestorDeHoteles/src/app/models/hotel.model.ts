@@ -13,6 +13,7 @@ export class Hotel {
       status: String,
       price: Number
     }],
+    public imgLink: String,
     public idAdminHotel: String
   ){}
 }

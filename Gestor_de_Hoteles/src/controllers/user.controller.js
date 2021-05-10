@@ -210,6 +210,16 @@ function registeredUsers(req,res){
     })
 }
 
+function getUsersAdminHotel(req,res){
+    if(req.user.rol != 'ROL_ADMIN') return res.status(500).send({ message: 'You dont have the permissions' })
+
+    User.find({rol: 'ROL_ADMIN_HOTEL'},(err, usersFounds) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!usersFounds) return res.status(500).send({ message: 'No users found' })
+        return res.status(200).send({ usersFounds })
+    })
+}
+
 module.exports = {
     createAdmin,
     login,
@@ -217,5 +227,6 @@ module.exports = {
     registerUser,
     editUser,
     deleteUser,
-    registeredUsers
+    registeredUsers,
+    getUsersAdminHotel
 }

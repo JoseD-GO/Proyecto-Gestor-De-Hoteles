@@ -20,4 +20,11 @@ export class HotelService {
 
      return this._http.get(`${this.url}/getHotels`, { headers: headersToken })
    }
+
+   addHotel(hotel: Hotel, token): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token);
+    let params = JSON.stringify(hotel);
+
+    return this._http.post(`${this.url}/addHotel`, params, { headers: headersToken })
+   }
 }

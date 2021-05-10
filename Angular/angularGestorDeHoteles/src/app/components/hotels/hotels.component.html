@@ -6,7 +6,7 @@
     <h1 class="text-6xl">Hoteles</h1>
   </div>
   <div>
-    <button *ngIf="rol === 'ROL_ADMIN'"  class="text-2xl mr-14 mt-2 w-full md:w-auto text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded-full font-medium cursor-pointer
+    <button *ngIf="rol === 'ROL_ADMIN'"  class="text-2xl mr-14 mt-3 w-full md:w-auto text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded-full font-medium cursor-pointer
     hover:bg-green-700 hover:text-green-100
     bg-green-100
     text-green-700
@@ -87,7 +87,7 @@
     <!--content-->
     <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
       <!--header-->
-      <div class="flex items-start justify-between p-5 border-b border-solid border-gray-200 rounded-t">
+      <div class="flex items-start justify-between p-3 border-b border-solid border-gray-200 rounded-t">
         <h3 class="text-3xl font-semibold">
           Agregar Hotel
         </h3>
@@ -98,22 +98,43 @@
         </button>
       </div>
       <!--body-->
-      <div class="relative p-6 flex-auto">
-        <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
-          I always felt like I could do anything. That’s the main
-          thing people are controlled by! Thoughts- their perception
-          of themselves! They're slowed down by their perception of
-          themselves. If you're taught you can’t do anything, you
-          won’t do anything. I was taught I could do everything.
-        </p>
+      <div class="relative px-6 py-4 flex-auto">
+        <form>
+          <div class="mb-2">
+              <label for="inputName" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Nombre</label>
+              <input type="text" placeholder="Nombre hotel" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-bluee-300" id="inputName" name="name" #name="ngModel" [(ngModel)]="HotelModelAdd.name"/>
+          </div>
+          <div class="mb-2">
+              <label for="inputAddress" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Dirección</label>
+              <input type="text" placeholder="Dirección" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" id="inputAddress" name="address" #address="ngModel" [(ngModel)]="HotelModelAdd.address" />
+          </div>
+          <div class="mb-2">
+
+              <label for="inputPhoneNumber" class="text-sm text-gray-600 dark:text-gray-400">Número de teléfono</label>
+              <input type="text" placeholder="+502 ****-****" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" id="inputPhoneNumber" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="HotelModelAdd.phoneNumber" />
+          </div>
+          <div class="mb-2">
+              <label for="inputDescription" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Descripción</label>
+              <textarea rows="5" placeholder="Descripción de hotel" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 resize-none" required id="inputDescription" name="description" #description="ngModel" [(ngModel)]="HotelModelAdd.description" ></textarea>
+          </div>
+          <div class="mb-2">
+            <label for="inputImgLink" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Link imagen</label>
+            <input type="text" placeholder="https://link-imagen-com" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" id="inputImgLink" name="imgLink" #imgLink="ngModel" [(ngModel)]="HotelModelAdd.imgLink" />
+        </div>
+        <label for="inputIdAdminHotel" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Administrador de Hotel</label>
+        <select name="select" value="" onclick="this.setAttribute('value', this.value);" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" id="inputIdAdminHotel" name="idAdminHotel" #idAdminHotel="ngModel" [(ngModel)]="HotelModelAdd.idAdminHotel" >
+                <option value="" selected disabled hidden>Seleccione el administrador</option>
+                <option *ngFor="let us of UsersAdminHotel; let i = index" [value]="us._id">{{us.username}}</option>
+              </select>
+      </form>
       </div>
       <!--footer-->
       <div class="flex items-center justify-between p-6 border-t border-solid border-gray-200 rounded-b">
-        <button class="text-green-500 border-green-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-green-700 hover:text-green-100" type="button" (click)="toggleModal()">
-          Save Changes
+        <button class="text-green-500 border-green-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-green-700 hover:text-green-100" type="button" (click)="addHotel()">
+          Guardar
         </button>
         <button class="text-red-500 border-red-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-red-700 hover:text-red-100" type="button" (click)="toggleModal()">
-          Close
+          Cancelar
         </button>
       </div>
     </div>

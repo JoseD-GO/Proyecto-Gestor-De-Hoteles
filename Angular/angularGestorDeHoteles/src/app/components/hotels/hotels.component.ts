@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from 'src/app/models/hotel.model';
+import { User } from 'src/app/models/user.model';
 import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,10 +13,12 @@ import { UserService } from 'src/app/services/user.service';
 export class HotelsComponent implements OnInit {
   public token;
   public HotelModelGet: Hotel;
-  public element;
+  public HotelModelAdd: Hotel;
+  public UsersAdminHotel: User;
   public showModal = false;
   public identity;
   public rol;
+  public num = 0;
 
   constructor(
     private _hotelService: HotelService,
@@ -30,22 +33,38 @@ export class HotelsComponent implements OnInit {
     }else if(this.identity.rol === 'ROL_USER'){
       this.rol = 'ROL_USER';
     }
+    this.HotelModelAdd = new Hotel('','','','','',0,0,[{number: 0, numberBeds: 0, status: '',price: 0}],'','')
    }
 
   ngOnInit(): void {
     this.getHotels();
-    console.log(this.rol);
-
+    this.getUsersAdminHotel();
   }
 
   getHotels(){
     this._hotelService.getHotels(this.token).subscribe(
       response => {
-        console.log(response)
         this.HotelModelGet = response.hotelsFound
       },
       error => {
         console.log(<any>error)
+      }
+    )
+  }
+
+  getUsersAdminHotel(){
+    this._userService.getUsersAdminHotel().subscribe(
+      response => {
+        this.UsersAdminHotel = response.usersFounds;
+      }
+    )
+  }
+
+  addHotel(){
+    this._hotelService.addHotel(this.HotelModelAdd, this.token).subscribe(
+      response => {
+        this.showModal = !this.showModal;
+        this.getHotels()
       }
     )
   }
