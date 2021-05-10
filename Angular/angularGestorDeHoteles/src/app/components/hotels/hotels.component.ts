@@ -38,7 +38,9 @@ export class HotelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHotels();
-    this.getUsersAdminHotel();
+    if(this.rol === 'ROL_ADMIN'){
+      this.getUsersAdminHotel();
+    }
   }
 
   getHotels(){
@@ -63,6 +65,12 @@ export class HotelsComponent implements OnInit {
   addHotel(){
     this._hotelService.addHotel(this.HotelModelAdd, this.token).subscribe(
       response => {
+        this.HotelModelAdd.name = '';
+        this.HotelModelAdd.address = '';
+        this.HotelModelAdd.phoneNumber = '';
+        this.HotelModelAdd.description = '';
+        this.HotelModelAdd.imgLink = '';
+        this.HotelModelAdd.idAdminHotel = '';
         this.showModal = !this.showModal;
         this.getHotels()
       }
