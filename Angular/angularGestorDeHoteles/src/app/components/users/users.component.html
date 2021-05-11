@@ -30,7 +30,8 @@
                           <td class="py-3 px-6 text-left">
                               <div class="flex items-center">
                                   <div class="mr-2">
-                                      <img class="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg"/>
+                                      <img *ngIf="us.image" class="w-6 h-6 rounded-full" [src]="us.image"/>
+                                      <img *ngIf="!us.image" class="w-6 h-6 rounded-full" src="/assets/user-profile.png"/>
                                   </div>
                                   <span class="font-medium">{{us.name}}</span>
                               </div>
