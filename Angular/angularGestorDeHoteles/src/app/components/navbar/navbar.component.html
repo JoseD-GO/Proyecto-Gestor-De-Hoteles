@@ -26,7 +26,8 @@
 
     <div class="dropdown inline-block relative">
       <button class="flex items-center justify-start lg:mb-0 mb-4 pointer-cursor text-white font-bold focus:outline-none" *ngIf="_userService.getIdentity()">
-        <img class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400 mr-8" src="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Andy Leverenz">{{_userService.getIdentity().username}}
+        <img *ngIf="_userService.getIdentity().image" class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400 mr-8" [src]="_userService.getIdentity().image" [alt]="'img-'-_userService.getIdentity().user">
+        <img *ngIf="!_userService.getIdentity().image" class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400 mr-8" src="/assets/user-profile.png" [alt]="'img-'-_userService.getIdentity().user">{{_userService.getIdentity().username}}
       </button>
       <ul class="dropdown-menu absolute hidden text-white pt-1">
         <li id="liDropdown" class=""><a class="rounded-t py-2 px-4 block whitespace-no-wrap" routerLink="#">Perfil</a></li>

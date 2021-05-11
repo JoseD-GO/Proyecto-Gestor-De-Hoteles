@@ -17,6 +17,7 @@ function createAdmin(req,res){
         userModel.password = pass
         userModel.rol = rol
         userModel.email = email
+        userModel.image = null;
 
         User.find( { $or: [
             { username: userModel.username }
@@ -83,7 +84,7 @@ function registerAdminHotel(req,res){
         userModel.username = params.username
         userModel.password = params.password
         userModel.rol = 'ROL_ADMIN_HOTEL'
-        userModel.image = null
+        userModel.image = params.img
 
         User.find({ $or: [
             { username: userModel.username },
@@ -126,7 +127,7 @@ function registerUser(req,res){
         userModel.email = params.email
         userModel.password = params.password
         userModel.rol = 'ROL_USER'
-        userModel.image = null
+        userModel.image = params.img
 
         User.find( { $or:[
             { username: userModel.username },
