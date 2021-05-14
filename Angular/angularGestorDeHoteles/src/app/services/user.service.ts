@@ -29,6 +29,13 @@ export class UserService {
     return this._http.get(`${this.url}/registeredUsers`, { headers: headersToken })
   }
 
+  /*getUsersRol(rol): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', this.getToken())
+    let params = JSON.stringify(rol)
+
+    return this._http.post(`${this.url}/getUsersRol`, params, { headers: headersToken })
+  }*/
+
   getUsersAdminHotel(): Observable<any>{
     let headersToken = this.headersVar.set('Authorization', this.getToken())
 

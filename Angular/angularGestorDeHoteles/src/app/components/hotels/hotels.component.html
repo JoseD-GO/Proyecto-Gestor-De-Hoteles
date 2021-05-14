@@ -125,7 +125,7 @@
         <select name="select" value="" onclick="this.setAttribute('value', this.value);" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" id="inputIdAdminHotel" name="idAdminHotel" #idAdminHotel="ngModel" [(ngModel)]="HotelModelAdd.idAdminHotel" >
                 <option value="" selected disabled hidden>Seleccione el administrador</option>
                 <option *ngFor="let us of UsersAdminHotel; let i = index" [value]="us._id">{{us.username}}</option>
-              </select>
+        </select>
       </form>
       </div>
       <!--footer-->
