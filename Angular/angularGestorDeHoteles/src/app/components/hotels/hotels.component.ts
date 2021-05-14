@@ -57,7 +57,7 @@ export class HotelsComponent implements OnInit {
   getUsersAdminHotel(){
     this._userService.getUsersAdminHotel().subscribe(
       response => {
-        this.UsersAdminHotel = response.usersFounds;
+        this.UsersAdminHotel = response.adminsFounds;
       }
     )
   }

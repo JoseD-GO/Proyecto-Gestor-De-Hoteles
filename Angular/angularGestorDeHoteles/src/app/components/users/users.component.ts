@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-users',
@@ -10,9 +12,14 @@ import { UserService } from 'src/app/services/user.service';
 export class UsersComponent implements OnInit {
   public users
   public usersAH
+  public token;
   public showRol = false
+  public showModal = false
+  public UserModelAdd: User
 
   constructor(private _userService: UserService) {
+    this.UserModelAdd = new User('','','','','','','','')
+    this.token = this._userService.getToken()
   }
 
   ngOnInit(): void {
@@ -43,9 +50,33 @@ export class UsersComponent implements OnInit {
     )
   }
 
+  registerUserAdminHotel(){
+    this._userService.addUserAdminHotel(this.UserModelAdd, this.token).subscribe(
+      response => {
+        this.getUsersAdminHotel()
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Admin registrado con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.showModal = !this.showModal;
+      },
+      error => {
+        console.log(<any>error)
+      }
+    )
+  }
+
   changeRol(){
     this.showRol = !this.showRol;
   }
+
+  toggleModal(){
+    this.showModal = !this.showModal;
+  }
+
 
   /*getUserRol(){
     this._userService.getUsersRol(this.rol).subscribe(

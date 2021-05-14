@@ -71,4 +71,12 @@ export class UserService {
 
     return this.token;
   }
+
+  addUserAdminHotel(user: User, token): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+    let params = JSON.stringify(user)
+
+    return this._http.post(`${this.url}/registerAdminHotel`, params, { headers: headersToken })
+
+  }
 }
