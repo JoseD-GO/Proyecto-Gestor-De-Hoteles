@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Hotel } from 'src/app/models/hotel.model';
 import { User } from 'src/app/models/user.model';
 import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-hotels',
@@ -22,7 +24,8 @@ export class HotelsComponent implements OnInit {
 
   constructor(
     private _hotelService: HotelService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _router: Router
   ) {
     this.token = this._userService.getToken();
     this.identity = this._userService.getIdentity();
@@ -71,8 +74,24 @@ export class HotelsComponent implements OnInit {
         this.HotelModelAdd.description = '';
         this.HotelModelAdd.imgLink = '';
         this.HotelModelAdd.idAdminHotel = '';
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Hotel agregado con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this.showModal = !this.showModal;
         this.getHotels()
+      },
+      error => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error al agregar el hotel!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     )
   }
@@ -80,5 +99,9 @@ export class HotelsComponent implements OnInit {
   toggleModal(){
     this.showModal = !this.showModal;
   }
+
+  /*detailsHotel(idHotel){
+    this._router.navigate(['/details-hotel', idHotel])
+  }*/
 
 }

@@ -27,4 +27,10 @@ export class HotelService {
 
     return this._http.post(`${this.url}/addHotel`, params, { headers: headersToken })
    }
+
+   getHotelID(token, id: string): Observable<any>{
+     let headersToken = this.headersVar.set('Authorization', token)
+
+    return this._http.get(`${this.url}/getHotelID/${id}`, { headers: headersToken })
+   }
 }

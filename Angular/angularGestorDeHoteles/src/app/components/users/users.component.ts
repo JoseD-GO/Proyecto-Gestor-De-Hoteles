@@ -64,7 +64,13 @@ export class UsersComponent implements OnInit {
         this.showModal = !this.showModal;
       },
       error => {
-        console.log(<any>error)
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error al registrar el admin hotel!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     )
   }

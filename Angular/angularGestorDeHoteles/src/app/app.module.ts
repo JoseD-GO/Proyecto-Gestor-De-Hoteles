@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsersComponent } from './components/users/users.component';
 import { HotelsComponent } from './components/hotels/hotels.component';
+import { DetailsHotelComponent } from './components/details-hotel/details-hotel.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HotelsComponent } from './components/hotels/hotels.component';
     HomeComponent,
     NavbarComponent,
     UsersComponent,
-    HotelsComponent
+    HotelsComponent,
+    DetailsHotelComponent
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,28 @@ function addHotel(req,res){
     }
 }
 
+function editHotel(req,res){
+    var idHotel = req.params.idHotel
+    var params = req.body
+
+    if(req.user.rol != 'ROL_ADMIN_HOTEL') return res.status(500).send({ message: 'You dont have the permissions' })
+
+    /*Hotel.findById(idHotel, (err, hotelFound) => {
+        if(req.user.sub != hotelFound.idAdminHotel) return res.status(500).send({ message: 'You dont have the permissions' })
+        Hotel.findByIdAndUpdate(idHotel, params, { new: true, useFindAndModify: false }, ( err, editedHotel ) => {
+            if(err) return res.status(500).send({ message: 'Error in the request' })
+            if(!editedHotel) return res.status(500).send({ message: 'Error editing the hotel' })
+            return res.status(200).send({ editedHotel })
+        })
+    })*/
+
+    Hotel.findByIdAndUpdate(idHotel, params, { new: true, useFindAndModify: false }, ( err, editedHotel ) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!editedHotel) return res.status(500).send({ message: 'Error editing the hotel' })
+        return res.status(200).send({ editedHotel })
+    })
+}
+
 function addRoom(req,res){
     var hotelID = req.params.IdHotel
     var params = req.body
@@ -71,9 +93,20 @@ function getHotels(req,res){
     })
 }
 
+function getHotelID(req,res){
+    var idHotel = req.params.idHotel
+    Hotel.findById(idHotel).populate('idAdminHotel',  'name lastname username image').exec((err, hotelFound) =>{
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!hotelFound) return res.status(500).send({ message: 'No hotel was found' })
+        return res.status(200).send({ hotelFound })
+    })
+}
+
 module.exports = {
     addHotel,
+    editHotel,
     addRoom,
     getRoomsHotel,
-    getHotels
+    getHotels,
+    getHotelID
 }

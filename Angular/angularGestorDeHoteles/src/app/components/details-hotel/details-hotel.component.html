@@ -1,0 +1,156 @@
+<app-navbar></app-navbar>
+<!-- <div class="my-4 mx-16">
+  <h1 class="text-6xl text-center font-bold">{{hotelModel.name}}</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 mt-4">
+    <div class="">
+      <img [src]="hotelModel.imgLink" [alt]="'img-hotel-'+hotelModel.name" class="w-10/12  md:w-auto border-gray-300 border-2 mx-auto">
+    </div>
+    <div>
+      <p class="font-sans text-lg text-justify md:ml-4">{{hotelModel.description}}</p>
+    </div>
+  </div>
+</div> -->
+
+<div class="max-w-screen-lg mx-auto">
+  <!-- header -->
+  <!-- <header class="flex items-center justify-between py-2">
+    <a href="#" class="px-2 lg:px-0 font-bold">
+      Tech Blog
+    </a>
+    <button class="block md:hidden px-2 text-3xl">
+      <i class='bx bx-menu'></i>
+    </button>
+    <ul class="hidden md:inline-flex items-center">
+      <li class="px-2 md:px-4">
+        <a href="" class="text-green-800 font-semibold hover:text-green-600"> Home </a>
+      </li>
+      <li class="px-2 md:px-4">
+        <a href="" class="text-gray-500 font-semibold hover:text-green-600"> About </a>
+      </li>
+      <li class="px-2 md:px-4">
+        <a href="" class="text-gray-500 font-semibold hover:text-green-600"> Press </a>
+      </li>
+      <li class="px-2 md:px-4">
+        <a href="" class="text-gray-500 font-semibold hover:text-green-600"> Contact </a>
+      </li>
+      <li class="px-2 md:px-4 hidden md:block">
+        <a href="" class="text-gray-500 font-semibold hover:text-green-600"> Login </a>
+      </li>
+      <li class="px-2 md:px-4 hidden md:block">
+        <a href="" class="text-gray-500 font-semibold hover:text-green-600"> Register </a>
+      </li>
+    </ul>
+
+  </header> -->
+  <!-- header ends here -->
+
+  <main class="mt-2">
+
+    <div class="mb-4 md:mb-0 w-full mx-auto relative">
+      <div class="px-4 lg:px-0">
+        <h2 class="text-6xl font-semibold text-gray-800 leading-tight text-center">
+          {{hotelModel.name}}
+        </h2>
+        <h1 class="py-2 text-green-700 inline-flex items-center justify-center mb-2">
+          {{hotelModel.address}}
+       </h1>
+      </div>
+      <img [src]="hotelModel.imgLink" class="w-full object-cover lg:rounded" style="height: 28em;"/>
+    </div>
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+
+      <div class="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
+        <p class="pb-6 text-justify">{{hotelModel.description}}</p>
+
+        <!-- <p class="pb-6"></p>
+
+        <p class="pb-6"></p>
+
+        <div class="border-l-4 border-gray-500 pl-4 mb-6 italic rounded">
+
+        </div>
+
+        <p class="pb-6"></p>
+
+        <h2 class="text-2xl text-gray-800 font-semibold mb-4 mt-4"></h2>
+
+        <p class="pb-6"></p>
+
+        <p class="pb-6"></p>
+
+        <p class="pb-6"></p>
+
+        <p class="pb-6"></p> -->
+
+      </div>
+
+      <div class="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
+        <div class="p-4 border-t border-b md:border md:rounded">
+          <div class="flex py-2">
+            <img *ngIf="hotelModel.idAdminHotel.image" class="h-10 w-10 rounded-full mr-2 object-cover" [src]="hotelModel.idAdminHotel.image"/>
+            <img *ngIf="!hotelModel.idAdminHotel.image" class="h-10 w-10 rounded-full mr-2 object-cover" src="/assets/user-profile.png"/>
+            <div>
+              <p class="font-semibold text-gray-700 text-sm"> {{hotelModel.idAdminHotel.name}} {{hotelModel.idAdminHotel.lastname}} </p>
+              <p class="font-semibold text-gray-600 text-xs"> {{hotelModel.idAdminHotel.username}} </p>
+            </div>
+          </div>
+          <p class="text-gray-700 py-3">
+            Administrador del hotel "{{hotelModel.name}}"
+          </p>
+          <!-- <button class="px-2 py-1 text-gray-100 bg-green-700 flex w-full items-center justify-center rounded">
+            Follow
+            <i class='bx bx-user-plus ml-2' ></i>
+          </button> -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <!-- main ends here -->
+
+  <!-- footer -->
+  <footer class="border-t mt-12 pt-12 pb-32 px-4 lg:px-0">
+    <div>
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" class="h-12 w-12" alt="logo">
+    </div>
+    <div class="flex flex-wrap">
+      <div class="w-full lg:w-2/5">
+        <p class="text-gray-600 hidden lg:block mt-4 p-0 lg:pr-12">
+          Boisterous he on understood attachment as entreaties ye devonshire.
+          In mile an form snug were been sell.
+          Extremely ham any his departure for contained curiosity defective.
+          Way now instrument had eat diminution melancholy expression sentiments stimulated.
+        </p>
+      </div>
+
+      <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
+        <h6 class="font-semibold text-gray-700 mb-4">Company</h6>
+        <ul>
+          <li> <a href="" class="block text-gray-600 py-2">Team</a> </li>
+          <li> <a href="" class="block text-gray-600 py-2">About us</a> </li>
+          <li> <a href="" class="block text-gray-600 py-2">Press</a> </li>
+        </ul>
+      </div>
+
+      <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
+        <h6 class="font-semibold text-gray-700 mb-4">Content</h6>
+        <ul>
+          <li> <a href="" class="block text-gray-600 py-2">Blog</a> </li>
+          <li> <a href="" class="block text-gray-600 py-2">Privacy Policy</a> </li>
+          <li> <a href="" class="block text-gray-600 py-2">Terms & Conditions</a> </li>
+          <li> <a href="" class="block text-gray-600 py-2">Documentation</a> </li>
+        </ul>
+      </div>
+
+      <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
+        <h6 class="font-semibold text-gray-700 mb-4">Company</h6>
+        <ul>
+          <li> <a href="" class="block text-gray-600 py-2">Team</a> </li>
+          <li> <a href="" class="block text-gray-600 py-2">About us</a> </li>
+          <li> <a href="" class="block text-gray-600 py-2">Press</a> </li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+</div>

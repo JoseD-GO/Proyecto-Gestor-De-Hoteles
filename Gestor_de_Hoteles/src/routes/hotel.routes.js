@@ -10,5 +10,7 @@ api.post('/addHotel',md_authentication.ensureAuth, hotelController.addHotel);
 api.put('/addRoom/:IdHotel', md_authentication.ensureAuth, hotelController.addRoom);
 api.get('/getRoomsHotel/:IdHotel', md_authentication.ensureAuth, hotelController.getRoomsHotel);
 api.get('/getHotels', md_authentication.ensureAuth, hotelController.getHotels)
+api.put('/editHotel/:idHotel', md_authentication.ensureAuth, hotelController.editHotel)
+api.get('/getHotelID/:idHotel', md_authentication.ensureAuth, hotelController.getHotelID)
 
 module.exports = api
