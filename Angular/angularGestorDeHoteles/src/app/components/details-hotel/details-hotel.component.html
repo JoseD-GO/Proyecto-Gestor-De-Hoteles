@@ -61,27 +61,6 @@
 
       <div class="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
         <p class="pb-6 text-justify">{{hotelModel.description}}</p>
-
-        <!-- <p class="pb-6"></p>
-
-        <p class="pb-6"></p>
-
-        <div class="border-l-4 border-gray-500 pl-4 mb-6 italic rounded">
-
-        </div>
-
-        <p class="pb-6"></p>
-
-        <h2 class="text-2xl text-gray-800 font-semibold mb-4 mt-4"></h2>
-
-        <p class="pb-6"></p>
-
-        <p class="pb-6"></p>
-
-        <p class="pb-6"></p>
-
-        <p class="pb-6"></p> -->
-
       </div>
 
       <div class="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
@@ -98,7 +77,7 @@
             Administrador del hotel "{{hotelModel.name}}"
           </p>
           <!-- <button class="px-2 py-1 text-gray-100 bg-green-700 flex w-full items-center justify-center rounded">
-            Follow
+            Ver
             <i class='bx bx-user-plus ml-2' ></i>
           </button> -->
         </div>
@@ -109,48 +88,50 @@
   <!-- main ends here -->
 
   <!-- footer -->
-  <footer class="border-t mt-12 pt-12 pb-32 px-4 lg:px-0">
-    <div>
-      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" class="h-12 w-12" alt="logo">
-    </div>
-    <div class="flex flex-wrap">
-      <div class="w-full lg:w-2/5">
-        <p class="text-gray-600 hidden lg:block mt-4 p-0 lg:pr-12">
-          Boisterous he on understood attachment as entreaties ye devonshire.
-          In mile an form snug were been sell.
-          Extremely ham any his departure for contained curiosity defective.
-          Way now instrument had eat diminution melancholy expression sentiments stimulated.
-        </p>
-      </div>
+  <footer class="border-t mt-12 pt-4 pb-28 px-4 lg:px-0 mb-16">
+    <div class="w-4/5 mt-1 rounded">
+      <!-- Tabs -->
+      <ul class="inline-flex w-full px-1 pt-2 ">
+        <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '1'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '1'"><a>Información</a></li>
+        <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '2'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '2'"><a>Eventos</a></li>
+        <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '3'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '3'"><a>Servicios</a></li>
+        <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '4'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '4'"><a>Reservación</a></li>
+      </ul>
 
-      <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
-        <h6 class="font-semibold text-gray-700 mb-4">Company</h6>
-        <ul>
-          <li> <a href="" class="block text-gray-600 py-2">Team</a> </li>
-          <li> <a href="" class="block text-gray-600 py-2">About us</a> </li>
-          <li> <a href="" class="block text-gray-600 py-2">Press</a> </li>
-        </ul>
+      <!-- Tab Contents -->
+      <div>
+        <div [ngClass]="{'hidden': click != '1'}" class="p-4">
+          <h1 class="font-bold text-2xl">Dirección:</h1>
+          <h2 class="text-md">{{hotelModel.address}}</h2>
+          <h1 class="font-bold text-2xl">Teléfono:</h1>
+          <h2 class="text-md">{{hotelModel.phoneNumber}}</h2>
+        </div>
+        <div [ngClass]="{'hidden': click != '2'}" class="p-4">
+          <div *ngFor="let eve of events" class="grid grid-cols-1 md:grid-cols-2">
+            <div class="bg-gray-300 py-4 px-4 shadow-xl rounded-lg my-4 mx-4">
+              <div class="flex justify-between px-4 items-center">
+                  <div class="text-lg font-semibold">
+                    <p>{{eve.name}}</p>
+                    <p class="text-gray-400 text-base">{{eve.date}}</p>
+                  </div>
+                  <div class="text-lg font-semibold">
+                   <button class="focus:outline-none bg-pink-700 hover:bg-pink-800 text-white font-bold py-2 px-2 rounded-full inline-flex items-center ">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    </button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div [ngClass]="{'hidden': click != '3'}" class="p-4">
+          Third tab
+        </div>
+        <div [ngClass]="{'hidden': click != '4'}" class="p-4">
+          Fourth tab
+        </div>
       </div>
-
-      <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
-        <h6 class="font-semibold text-gray-700 mb-4">Content</h6>
-        <ul>
-          <li> <a href="" class="block text-gray-600 py-2">Blog</a> </li>
-          <li> <a href="" class="block text-gray-600 py-2">Privacy Policy</a> </li>
-          <li> <a href="" class="block text-gray-600 py-2">Terms & Conditions</a> </li>
-          <li> <a href="" class="block text-gray-600 py-2">Documentation</a> </li>
-        </ul>
-      </div>
-
-      <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
-        <h6 class="font-semibold text-gray-700 mb-4">Company</h6>
-        <ul>
-          <li> <a href="" class="block text-gray-600 py-2">Team</a> </li>
-          <li> <a href="" class="block text-gray-600 py-2">About us</a> </li>
-          <li> <a href="" class="block text-gray-600 py-2">Press</a> </li>
-        </ul>
-      </div>
-
     </div>
   </footer>
 </div>

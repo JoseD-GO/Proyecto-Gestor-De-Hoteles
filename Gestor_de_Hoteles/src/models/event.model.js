@@ -5,9 +5,10 @@ var Schema = mongoose.Schema
 
 var EventSchema = Schema({
     name: String,
-    descrioption: String,
+    description: String,
     date: Date,
-    idEventTyoe: { type: Schema.Types.ObjectId, ref: 'EventsType' },
+    duration: String,
+    idEventType: { type: Schema.Types.ObjectId, ref: 'EventsType' },
     idHotel: { type: Schema.Types.ObjectId, ref: 'Hotels' }
 })
 
