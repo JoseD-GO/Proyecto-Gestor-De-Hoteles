@@ -20,4 +20,10 @@ export class EventService {
 
     return this._http.get(`${this.url}/getEventsHotel/${id}`, { headers: headersToken })
   }
+
+  getEventId(token, idEvent: string): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+
+    return this._http.get(`${this.url}/getEventID/${idEvent}`,{ headers: headersToken })
+  }
 }

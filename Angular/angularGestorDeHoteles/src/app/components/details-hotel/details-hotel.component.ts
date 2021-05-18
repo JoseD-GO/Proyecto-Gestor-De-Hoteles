@@ -17,7 +17,9 @@ export class DetailsHotelComponent implements OnInit {
   public events
   public token;
   public idHotelRoute: string;
+  public eventModelGet: Event;
   public click = '1';
+  public showModal = false;
 
   constructor(
     public _userService: UserService,
@@ -27,7 +29,7 @@ export class DetailsHotelComponent implements OnInit {
   ) {
     this.token = this._userService.getToken()
     this.hotelModel = new Hotel('','','','','',0,0,[{number: 0, numberBeds: 0, status: '',price: 0}],'','')
-    //this.events = new Event('','','','','','')
+    this.eventModelGet = new Event('','','','','','')
    }
 
   ngOnInit(): void {
@@ -52,6 +54,18 @@ export class DetailsHotelComponent implements OnInit {
         this.events = response.eventsFound;
       }
     )
+  }
+
+  getEventID(idEvent){
+    this._eventService.getEventId(this.token, idEvent).subscribe(
+      response => {
+        this.eventModelGet = response.eventFound
+      }
+    )
+  }
+
+  toggleModal(){
+    this.showModal = !this.showModal;
   }
 
 }

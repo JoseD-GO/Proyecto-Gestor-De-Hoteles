@@ -9,5 +9,6 @@ var api = express.Router()
 api.post('/addEvent', md_authentication.ensureAuth, eventController.addEvent);
 api.put('/editEvent/:idEvent', md_authentication.ensureAuth, eventController.editEvent);
 api.get('/getEventsHotel/:idHotel', md_authentication.ensureAuth, eventController.getEventsHotel)
+api.get('/getEventID/:idEvent', md_authentication.ensureAuth, eventController.getEventID)
 
 module.exports = api;

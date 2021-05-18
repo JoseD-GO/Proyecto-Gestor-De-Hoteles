@@ -58,8 +58,19 @@ function getEventsHotel(req,res){
     })
 }
 
+function getEventID(req,res){
+    var idEvent = req.params.idEvent;
+
+    Event.findById(idEvent, (err, eventFound) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!eventFound) return res.status(500).send({ message: 'Error getting the events' })
+        return res.status(200).send({ eventFound })
+    })
+}
+
 module.exports = {
     addEvent,
     editEvent,
-    getEventsHotel
+    getEventsHotel,
+    getEventID
 }
