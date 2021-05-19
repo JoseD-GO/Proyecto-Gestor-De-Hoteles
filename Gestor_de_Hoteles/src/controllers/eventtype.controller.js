@@ -42,7 +42,21 @@ function editEventType(req,res){
     }
 }
 
+function getEventsType(req,res){
+    if(req.user.rol == 'ROL_ADMIN' || req.user.rol == 'ROL_ADMIN_HOTEL') {
+        Type.find((err, typesFounds) => {
+            if(err) return res.status(500).send({ message: 'Error in the request' })
+            if(!typesFounds) return res.status(500).send({ message: 'Error editing the event type' })
+
+            return res.status(200).send({ typesFounds })
+        })
+    }else {
+        return res.status(500).send({ message: 'You dont have the permissions' })
+    }
+}
+
 module.exports = {
     addEventType,
-    editEventType
+    editEventType,
+    getEventsType
 }

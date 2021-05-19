@@ -9,10 +9,12 @@ function addEvent(req,res){
     var params = req.body
 
     if(req.user.rol == 'ROL_ADMIN' || req.user.rol == 'ROL_ADMIN_HOTEL') {
+        console.log(params);
         if(params.name && params.description && params.date && params.idEventType && params.idHotel){
             eventModel.name = params.name;
             eventModel.description = params.description;
             eventModel.date = params.date;
+            eventModel.duration = params.duration;
             eventModel.idEventType = params.idEventType;
             eventModel.idHotel = params.idHotel;
 
@@ -61,7 +63,7 @@ function getEventsHotel(req,res){
 function getEventID(req,res){
     var idEvent = req.params.idEvent;
 
-    Event.findById(idEvent, (err, eventFound) => {
+    Event.findById(idEvent).populate('idEventType', '_id name').exec((err, eventFound) => {
         if(err) return res.status(500).send({ message: 'Error in the request' })
         if(!eventFound) return res.status(500).send({ message: 'Error getting the events' })
         return res.status(200).send({ eventFound })
