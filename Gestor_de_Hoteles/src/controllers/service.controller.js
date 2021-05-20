@@ -45,7 +45,29 @@ function editService(req,res){
     }
 }
 
+function getServicesHotel(req,res){
+    var idHotel = req.params.idHotel
+
+    Service.find({idHotel: idHotel}, (err, servicesFound) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!servicesFound) return res.status(500).send({ message: 'Error getting the services' })
+        return res.status(200).send({ servicesFound })
+    })    
+}
+
+function getServicesID(req,res){
+    var idService = req.params.idService;
+
+    Service.findById(idService, (err, serviceFound) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!serviceFound) return res.status(500).send({ message: 'Error getting the service' })
+        return res.status(200).send({ serviceFound })
+    })
+}
+
 module.exports = {
     addService,
-    editService
+    editService,
+    getServicesHotel,
+    getServicesID
 }

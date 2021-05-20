@@ -9,7 +9,6 @@ function addEvent(req,res){
     var params = req.body
 
     if(req.user.rol == 'ROL_ADMIN' || req.user.rol == 'ROL_ADMIN_HOTEL') {
-        console.log(params);
         if(params.name && params.description && params.date && params.idEventType && params.idHotel){
             eventModel.name = params.name;
             eventModel.description = params.description;
