@@ -25,13 +25,16 @@ export class DetailsHotelComponent implements OnInit {
   public idHotelRoute: string;
   public eventModelGet: Event;
   public eventModelAdd: Event;
+  public idEvent: Event;
   public serviceModelGet: Service;
   public serviceModelAdd: Service;
   public click = '1';
   public showModal = false;
   public showModalE = false;
+  public showModalEEdit = false;
   public showModalS = false;
   public showModalSAdd = false;
+  public showModalSEdit = false;
   public identity;
   public typesGet: EventType;
 
@@ -40,13 +43,14 @@ export class DetailsHotelComponent implements OnInit {
     public _hotelService: HotelService,
     public _eventService: EventService,
     public _eventTypeService: EventtypeService,
-    public _serviceServices: ServiceService,
+    public _serviceService: ServiceService,
     public _activetedRoute: ActivatedRoute
   ) {
     this.token = this._userService.getToken()
     this.hotelModel = new Hotel('','','','','',0,0,[{number: 0, numberBeds: 0, status: '',price: 0}],'','')
     this.eventModelGet = new Event('','','','','','','')
     this.eventModelAdd = new Event('','','','','','','')
+    this.idEvent = new Event('','','','','','','')
     this.serviceModelGet = new Service('','','',0,'')
     this.serviceModelAdd = new Service('','','',0,'')
     this.identity = this._userService.getIdentity()
@@ -84,6 +88,7 @@ export class DetailsHotelComponent implements OnInit {
     this._eventService.getEventId(this.token, idEvent).subscribe(
       response => {
         this.eventModelGet = response.eventFound
+        this.idEvent = response.eventFound
       }
     )
   }
@@ -118,8 +123,24 @@ export class DetailsHotelComponent implements OnInit {
     )
   }
 
+  editEvent(){
+    this._eventService.editEvent(this.token, this.eventModelGet).subscribe(
+      response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Evento editado con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.showModalEEdit = !this.showModalEEdit;
+        this.getEvents(this.idHotelRoute)
+      }
+    )
+  }
+
   getServicesIdHotel(idHotel){
-    this._serviceServices.getServiceHotel(this.token, idHotel).subscribe(
+    this._serviceService.getServiceHotel(this.token, idHotel).subscribe(
       response => {
         this.services = response.servicesFound;
       }
@@ -127,7 +148,7 @@ export class DetailsHotelComponent implements OnInit {
   }
 
   getServiceId(idService){
-    this._serviceServices.getServiceID(this.token, idService).subscribe(
+    this._serviceService.getServiceID(this.token, idService).subscribe(
       response => {
         this.serviceModelGet = response.serviceFound
       }
@@ -136,7 +157,7 @@ export class DetailsHotelComponent implements OnInit {
 
   AddService(){
     this.serviceModelAdd.idHotel = this.idHotelRoute;
-    this._serviceServices.addService(this.token, this.serviceModelAdd).subscribe(
+    this._serviceService.addService(this.token, this.serviceModelAdd).subscribe(
       response => {
         this.serviceModelAdd.name = '';
         this.serviceModelAdd.description = '';
@@ -149,6 +170,22 @@ export class DetailsHotelComponent implements OnInit {
           timer: 1500
         })
         this.showModalSAdd = !this.showModalSAdd;
+        this.getServicesIdHotel(this.idHotelRoute)
+      }
+    )
+  }
+
+  editService(){
+    this._serviceService.editService(this.token, this.serviceModelGet).subscribe(
+      response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Servicio editado con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.showModalSEdit = !this.showModalSEdit;
         this.getServicesIdHotel(this.idHotelRoute)
       }
     )
@@ -170,5 +207,11 @@ export class DetailsHotelComponent implements OnInit {
     this.showModalSAdd = !this.showModalSAdd;
   }
 
+  toggleModalEEdit(){
+    this.showModalEEdit = !this.showModalEEdit;
+  }
 
+  toggleModalSEdit(){
+    this.showModalSEdit = !this.showModalSEdit;
+  }
 }

@@ -33,4 +33,11 @@ export class ServiceService {
 
     return this._http.post(`${this.url}/addService`, params, { headers: headersToken })
   }
+
+  editService(token, service: Service): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+    let params = JSON.stringify(service)
+
+    return this._http.put(`${this.url}/editService/${service._id}`, params, { headers: headersToken })
+  }
 }

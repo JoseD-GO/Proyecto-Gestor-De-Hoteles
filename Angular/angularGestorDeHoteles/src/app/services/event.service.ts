@@ -33,4 +33,11 @@ export class EventService {
 
     return this._http.post(`${this.url}/addEvent`, params, { headers: headersToken })
   }
+
+  editEvent(token, event: Event): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+    let params = JSON.stringify(event)
+
+    return this._http.put(`${this.url}/editEvent/${event._id}`, params, { headers: headersToken })
+  }
 }
