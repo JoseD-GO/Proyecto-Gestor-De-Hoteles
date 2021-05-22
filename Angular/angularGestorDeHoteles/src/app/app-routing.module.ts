@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetailsHotelComponent } from './components/details-hotel/details-hotel.component';
+import { EventsTypesComponent } from './components/events-types/events-types.component';
 import { HomeComponent } from './components/home/home.component';
 import { HotelsComponent } from './components/hotels/hotels.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'hotels', component: HotelsComponent },
   { path: 'details-hotel/:idHotel', component: DetailsHotelComponent },
+  { path: 'events-types', component: EventsTypesComponent },
   { path: '**', component: LoginComponent }
 ];
 

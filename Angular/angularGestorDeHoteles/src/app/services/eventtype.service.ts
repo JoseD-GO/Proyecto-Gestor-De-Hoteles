@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GLOBAL } from "./global.service";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EventType } from '../models/eventtype.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,13 @@ export class EventtypeService {
     let headersToken = this.headersVar.set('Authorization', token)
 
     return this._http.get(`${this.url}/getEventsTypes`, { headers: headersToken })
+  }
+
+  addType(token, type: EventType): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+    let params = JSON.stringify(type);
+
+    return this._http.post(`${this.url}/addEventType`, params, { headers: headersToken })
   }
 
 }
