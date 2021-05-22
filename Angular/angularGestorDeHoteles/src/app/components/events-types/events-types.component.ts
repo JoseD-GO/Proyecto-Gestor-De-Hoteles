@@ -12,8 +12,10 @@ import Swal from "sweetalert2";
 })
 export class EventsTypesComponent implements OnInit {
   public token;
-  public typesGet
+  public typesGet;
+  public typeModelID: EventType;
   public typeModelAdd: EventType;
+  public showModal = false;
 
   constructor(
     public _eventTypeService: EventtypeService,
@@ -21,6 +23,7 @@ export class EventsTypesComponent implements OnInit {
   ) {
     this.token = this._userService.getToken();
     this.typeModelAdd = new EventType('','')
+    this.typeModelID = new EventType('','')
   }
 
   ngOnInit(): void {
@@ -31,6 +34,14 @@ export class EventsTypesComponent implements OnInit {
     this._eventTypeService.getTypes(this.token).subscribe(
       response => {
         this.typesGet = response.typesFounds
+      }
+    )
+  }
+
+  getTypeID(idType){
+    this._eventTypeService.getTypeID(this.token, idType).subscribe(
+      response => {
+        this.typeModelID = response.typeFound;
       }
     )
   }
@@ -49,6 +60,26 @@ export class EventsTypesComponent implements OnInit {
         this.getTypes()
       }
     )
+  }
+
+  editType(){
+    this._eventTypeService.editType(this.token, this.typeModelID).subscribe(
+      response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Tipo Evento editado con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.showModal = !this.showModal;
+        this.getTypes()
+      }
+    )
+  }
+
+  toggleModal(){
+    this.showModal = !this.showModal;
   }
 
 }
