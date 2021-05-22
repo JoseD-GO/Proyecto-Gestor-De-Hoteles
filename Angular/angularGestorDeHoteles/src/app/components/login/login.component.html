@@ -1,33 +1,39 @@
-<div class="flex flex-col p-2 h-screen">
-    <div class="max-w-md m-auto">
-        <h1 class="text-5xl text-center animate__animated animate__backInLeft">JD Hotel</h1>
-        <p class="text-2xl text-center animate__animated animate__backInRight">Iniciar Sesión</p>
+<div class="font-sans">
+  <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+      <div class="relative sm:max-w-sm w-full">
+          <div class="card bg-gray-200 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+          <div class="card bg-gray-300 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+          <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+            <h1 class="text-5xl text-center animate__animated animate__backInLeft">JD Hotel</h1>
+            <p class="text-2xl text-center animate__animated animate__backInRight">Iniciar Sesión</p>
+            <div class="p-5 my-5 rounded animate__animated animate__backInUp">
+              <div>
+                <label for="inputUsername" class="block mb-8">Usuario</label>
+                <input
+                  type="text"
+                  class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100 mb-4" name="username" id="inputUsername"
+                  #username="ngModel" [(ngModel)]="userModel.username">
+              </div>
+              <div class="py-2">
+                <label for="inputPassword" class="block mb-8">Contraseña</label>
+                <input
+                  type="password"
+                  class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100 mb-4" name="password" id="inputPassword"
+                  #password="ngModel" [(ngModel)]="userModel.password">
+              </div>
+              <div class="py-2">
+                <button
+                    type="submit"
+                    class="w-full rounded bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-solid border-2 border-green-600" (click)="login()">
+                  Iniciar Sesión
+                </button>
+              </div>
+              <div>
+                  <p class="text-sm text-center">¿No tienes una cuenta? <a class="text-blue-700 hover:font-bold" routerLink="/register">Crea una</a></p>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
 
-        <div class="border p-5 my-5 rounded animate__animated animate__backInUp">
-          <div>
-            <label for="inputUsername" class="block mb-2">Usuario</label>
-            <input
-              type="text"
-              class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100" name="username" id="inputUsername"
-              #username="ngModel" [(ngModel)]="userModel.username">
-          </div>
-          <div class="py-2">
-            <label for="inputPassword" class="block mb-2">Contraseña</label>
-            <input
-              type="password"
-              class="border rounded py-2 px-3 w-full focus:outline-none focus:shadow-outline hover:bg-gray-100" name="password" id="inputPassword"
-              #password="ngModel" [(ngModel)]="userModel.password">
-          </div>
-          <div class="py-2">
-            <button
-                type="submit"
-                class="w-full rounded bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-solid border-2 border-green-600" (click)="login()">
-              Iniciar Sesión
-            </button>
-          </div>
-          <div>
-              <p class="text-sm text-center">¿No tienes una cuenta? <a class="text-blue-700 hover:font-bold" routerLink="/register">Crea una</a></p>
-          </div>
-        </div>
-    </div>
 </div>
