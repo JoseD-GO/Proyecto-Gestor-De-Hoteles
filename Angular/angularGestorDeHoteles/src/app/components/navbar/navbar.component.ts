@@ -32,4 +32,11 @@ export class NavbarComponent implements OnInit {
     this._router.navigate(['/login']);
   }
 
+  getUser(idUser){
+    this._userService.getUserID(idUser).subscribe(
+      response => {
+      }
+    )
+  }
+
 }

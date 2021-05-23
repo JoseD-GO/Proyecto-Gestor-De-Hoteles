@@ -23,6 +23,33 @@ export class UserService {
     return this._http.post(this.url+'/registerUser', params, { headers: this.headersVar } )
   }
 
+  getUserID(id: String): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', this.getToken())
+
+    return this._http.get(`${this.url}/getUserID/${id}`, { headers: headersToken })
+  }
+
+  editUser(user: User): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', this.getToken())
+    let params = JSON.stringify(user)
+
+    return this._http.put(`${this.url}/editUser`, params, { headers: headersToken })
+  }
+
+  editUsername(user: User): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', this.getToken())
+    let params = JSON.stringify(user)
+
+    return this._http.put(`${this.url}/editUsername`, params, { headers: headersToken })
+  }
+
+  editEmail(user: User): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', this.getToken())
+    let params = JSON.stringify(user)
+
+    return this._http.put(`${this.url}/editEmail`, params, { headers: headersToken })
+  }
+
   getUsers(): Observable<any>{
     let headersToken = this.headersVar.set('Authorization', this.getToken())
 

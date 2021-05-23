@@ -1,0 +1,239 @@
+<app-navbar></app-navbar>
+<div class="container mx-auto my-5 p-5">
+  <div class="md:flex no-wrap md:-mx-2 ">
+      <!-- Left Side -->
+      <div class="w-full md:w-3/12 md:mx-2">
+          <!-- Perfil Card -->
+          <div class="bg-white p-3 border-t-4 border-gray-400">
+              <div class="image overflow-hidden">
+                <img *ngIf="identityP.image" class="h-auto w-full mx-auto" [src]="identityP.image" [alt]="'img-'-identityP.username">
+                <img *ngIf="!identityP.image" class="h-auto w-full mx-auto" src="/assets/user-profile.png" [alt]="'img-'-identityP.username">
+              </div>
+              <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{identityP.name}} {{identityP.lastname}}</h1>
+          </div>
+          <!-- Fin de perfil card -->
+          <div class="my-4"></div>
+      </div>
+      <!-- Right Side -->
+      <div class="w-full md:w-9/12 mx-2 h-64">
+          <!-- Perfil tab -->
+          <!-- Datos Section -->
+          <div class="bg-white p-3 shadow-sm rounded-sm">
+              <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                  <span clas="text-green-500">
+                      <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                  </span>
+                  <span class="tracking-wide">Datos personales</span>
+              </div>
+              <div class="text-gray-700">
+                  <div class="grid md:grid-cols-2 text-md">
+                      <div class="grid grid-cols-3">
+                          <div class="px-4 py-2 font-semibold">Nombre</div>
+                          <div class="px-4 py-2">{{identityP.name}}</div>
+                          <div class="w-4 transform hover:text-purple-500 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalN()">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                          </div>
+                      </div>
+                      <div class="grid grid-cols-3">
+                          <div class="px-4 py-2 font-semibold">Apellido</div>
+                          <div class="px-4 py-2">{{identityP.lastname}}</div>
+                          <div class="w-4 transform hover:text-purple-500 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalLN()">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                          </div>
+                      </div>
+                      <div class="grid grid-cols-3">
+                        <div class="px-4 py-2 font-semibold">Nombre de usuario</div>
+                        <div class="px-4 py-2">{{identityP.username}}</div>
+                        <div class="w-4 transform hover:text-purple-500 hover:scale-110">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalU()">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                          </svg>
+                        </div>
+                    </div>
+                      <div class="grid grid-cols-3">
+                          <div class="px-4 py-2 font-semibold">Email</div>
+                          <div class="px-4 py-2">
+                              <a class="text-blue-800">{{identityP.email}}</a>
+                          </div>
+                          <div class="w-4 transform hover:text-purple-500 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalE()">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <button
+              class="block w-full text-red-800 text-sm font-semibold rounded-lg hover:bg-red-300 focus:outline-none focus:shadow-outline hover:shadow-xs p-3 my-4">Eliminar cuenta</button>
+          </div>
+          <!-- End of about section -->
+
+          <div class="my-4"></div>
+          <!-- End of profile tab -->
+      </div>
+  </div>
+</div>
+
+<!--Modal Editar Nombre-->
+<div id="divModal" *ngIf="showModalN" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex animate__animated animate__fadeInDownBig">
+  <div class="relative w-auto my-6 mx-auto max-w-sm">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-3 border-b border-solid border-gray-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+          Editar nombre
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModalN()">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div class="relative px-6 py-4 flex-auto">
+        <form>
+          <div class="mb-2">
+              <label for="inputName" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Nombre</label>
+              <input type="text" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-bluee-300" id="inputName" name="name" #name="ngModel" [(ngModel)]="userModel.name"/>
+          </div>
+      </form>
+      </div>
+      <!--footer-->
+      <div class="flex items-center justify-between p-6 border-t border-solid border-gray-200 rounded-b">
+        <button class="text-green-500 border-green-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-green-700 hover:text-green-100" type="button" (click)="editUserN()">
+          Guardar
+        </button>
+        <button class="text-red-500 border-red-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-red-700 hover:text-red-100" type="button" (click)="toggleModalN()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModalN" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+<!--Modal Editar Apellido-->
+<div id="divModal" *ngIf="showModalLN" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex animate__animated animate__fadeInDownBig">
+  <div class="relative w-auto my-6 mx-auto max-w-sm">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-3 border-b border-solid border-gray-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+          Editar apellido
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModalLN()">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div class="relative px-6 py-4 flex-auto">
+        <form>
+          <div class="mb-2">
+              <label for="inputLastName" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Apellido</label>
+              <input type="text" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-bluee-300" id="inputLastName" name="lastname" #lastname="ngModel" [(ngModel)]="userModel.lastname"/>
+          </div>
+      </form>
+      </div>
+      <!--footer-->
+      <div class="flex items-center justify-between p-6 border-t border-solid border-gray-200 rounded-b">
+        <button class="text-green-500 border-green-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-green-700 hover:text-green-100" type="button" (click)="editUserLN()">
+          Guardar
+        </button>
+        <button class="text-red-500 border-red-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-red-700 hover:text-red-100" type="button" (click)="toggleModalLN()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModalLN" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+<!--Modal Editar Usuario-->
+<div id="divModal" *ngIf="showModalU" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex animate__animated animate__fadeInDownBig">
+  <div class="relative w-auto my-6 mx-auto max-w-sm">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-3 border-b border-solid border-gray-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+          Editar usuario
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModalU()">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div class="relative px-6 py-4 flex-auto">
+        <form>
+          <div class="mb-2">
+              <label for="inputLastName" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Usuario</label>
+              <input type="text" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-bluee-300" id="inputLastName" name="lastname" #lastname="ngModel" [(ngModel)]="userModel.username"/>
+          </div>
+      </form>
+      </div>
+      <!--footer-->
+      <div class="flex items-center justify-between p-6 border-t border-solid border-gray-200 rounded-b">
+        <button class="text-green-500 border-green-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-green-700 hover:text-green-100" type="button" (click)="editUsername()">
+          Guardar
+        </button>
+        <button class="text-red-500 border-red-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-red-700 hover:text-red-100" type="button" (click)="toggleModalU()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModalU" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+<!--Modal Editar Email-->
+<div id="divModal" *ngIf="showModalE" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex animate__animated animate__fadeInDownBig">
+  <div class="relative w-auto my-6 mx-auto max-w-sm">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-3 border-b border-solid border-gray-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+          Editar email
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModalE()">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div class="relative px-6 py-4 flex-auto">
+        <form>
+          <div class="mb-2">
+              <label for="inputEmail" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email</label>
+              <input type="text" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-bluee-300" id="inputEmail" name="email" #email="ngModel" [(ngModel)]="userModel.email"/>
+          </div>
+      </form>
+      </div>
+      <!--footer-->
+      <div class="flex items-center justify-between p-6 border-t border-solid border-gray-200 rounded-b">
+        <button class="text-green-500 border-green-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-green-700 hover:text-green-100" type="button" (click)="editEmail()">
+          Guardar
+        </button>
+        <button class="text-red-500 border-red-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-red-700 hover:text-red-100" type="button" (click)="toggleModalE()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModalE" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

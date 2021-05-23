@@ -159,6 +159,16 @@ function registerUser(req,res){
 
 }
 
+function getUserID(req,res){
+    var idUser = req.params.idUser;
+
+    User.findById(idUser, (err, userFound) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!userFound) return res.status(500).send({ message: 'No user found' })
+        return res.status(200).send({ userFound })
+    })
+}
+
 function editUser(req,res){
     var idUser = req.user.sub
     var params = req.body
@@ -168,8 +178,62 @@ function editUser(req,res){
     delete params.password
     delete params.rol
 
+    /*User.find({ $or: [
+        { username: params.username },
+        { email: params.email }
+    ] }).exec(( err, userFound ) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(userFound && userFound.length >= 1){
+            return res.status(500).send({ message: 'The user already exists' })
+
+        }else {*/
+            User.findByIdAndUpdate(idUser, params, {new: true, useFindAndModify: false}, (err, editedUser) => {
+                if(err) return res.status(500).send({ message: 'Error in the request' })
+                if(!editedUser) return res.status(500).send({ message: 'The user couldnt not be found' })
+        
+                return res.status(200).send({ editedUser })
+            })
+        //}
+    //} )
+}
+
+function editUserUsername(req,res){
+    var idUser = req.user.sub
+    var params = req.body
+
+    if(req.user.rol != 'ROL_USER') return res.status(500).send({ message: 'Cant edit your account' })
+
+    delete params.password
+    delete params.rol
+
     User.find({ $or: [
-        { user: params.user },
+        { username: params.username }
+    ] }).exec(( err, userFound ) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(userFound && userFound.length >= 1){
+            return res.status(500).send({ message: 'The user already exists' })
+
+        }else {
+            User.findByIdAndUpdate(idUser, {username: params.username}, {new: true, useFindAndModify: false}, (err, editedUser) => {
+                if(err) return res.status(500).send({ message: 'Error in the request' })
+                if(!editedUser) return res.status(500).send({ message: 'The user couldnt not be found' })
+        
+                return res.status(200).send({ editedUser })
+            })
+        }
+    } )
+}
+
+function editUserEmail(req,res){
+    var idUser = req.user.sub
+    var params = req.body
+
+    if(req.user.rol != 'ROL_USER') return res.status(500).send({ message: 'Cant edit your account' })
+
+    delete params.password
+    delete params.rol
+
+    User.find({ $or: [
         { email: params.email }
     ] }).exec(( err, userFound ) => {
         if(err) return res.status(500).send({ message: 'Error in the request' })
@@ -177,7 +241,7 @@ function editUser(req,res){
             return res.status(500).send({ message: 'The user already exists' })
 
         }else {
-            User.findByIdAndUpdate(idUser, params, {new: true, useFindAndModify: false}, (err, editedUser) => {
+            User.findByIdAndUpdate(idUser, {email: params.email}, {new: true, useFindAndModify: false}, (err, editedUser) => {
                 if(err) return res.status(500).send({ message: 'Error in the request' })
                 if(!editedUser) return res.status(500).send({ message: 'The user couldnt not be found' })
         
@@ -238,7 +302,10 @@ module.exports = {
     login,
     registerAdminHotel,
     registerUser,
+    getUserID,
     editUser,
+    editUserUsername,
+    editUserEmail,
     deleteUser,
     registeredUsers,
     getUsersAdminHotel,
