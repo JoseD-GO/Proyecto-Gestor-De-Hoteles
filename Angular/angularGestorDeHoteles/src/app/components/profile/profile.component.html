@@ -9,6 +9,13 @@
                 <img *ngIf="identityP.image" class="h-auto w-full mx-auto" [src]="identityP.image" [alt]="'img-'-identityP.username">
                 <img *ngIf="!identityP.image" class="h-auto w-full mx-auto" src="/assets/user-profile.png" [alt]="'img-'-identityP.username">
               </div>
+              <div class="flex justify-end">
+                <div *ngIf="identityP.rol != 'ROL_ADMIN'" class="w-4 transform hover:text-purple-500 hover:scale-110 text-right">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalI()">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                </div>
+              </div>
               <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{identityP.name}} {{identityP.lastname}}</h1>
           </div>
           <!-- Fin de perfil card -->
@@ -237,3 +244,42 @@
   </div>
 </div>
 <div *ngIf="showModalE" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+<!--Modal Editar Imagen-->
+<div id="divModal" *ngIf="showModalI" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex animate__animated animate__fadeInDownBig">
+  <div class="relative w-auto my-6 mx-auto max-w-sm">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-3 border-b border-solid border-gray-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+          Editar imagen
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModalI()">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div class="relative px-6 py-4 flex-auto">
+        <form>
+          <div class="mb-2">
+              <label for="inputEmail" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Imagen</label>
+              <input type="text" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-100 focus:border-bluee-300" id="inputEmail" name="email" #email="ngModel" [(ngModel)]="userModel.image"/>
+          </div>
+      </form>
+      </div>
+      <!--footer-->
+      <div class="flex items-center justify-between p-6 border-t border-solid border-gray-200 rounded-b">
+        <button class="text-green-500 border-green-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-green-700 hover:text-green-100" type="button" (click)="editUserI()">
+          Guardar
+        </button>
+        <button class="text-red-500 border-red-700 border font-bold uppercase px-6 py-2 text-sm hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded-full hover:bg-red-700 hover:text-red-100" type="button" (click)="toggleModalI()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModalI" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

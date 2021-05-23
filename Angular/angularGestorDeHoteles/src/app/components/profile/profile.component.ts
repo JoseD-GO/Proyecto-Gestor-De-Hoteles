@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   public showModalLN = false;
   public showModalU = false;
   public showModalE = false;
+  public showModalI = false;
 
   constructor(public _userService: UserService, private _router: Router) {
 
@@ -77,6 +78,33 @@ export class ProfileComponent implements OnInit {
           timer: 1500
         })
         this.showModalLN = !this.showModalLN;
+      }
+    )
+  }
+
+  editUserI(){
+    this.userModel = this.identityP;
+    this._userService.editUser(this.userModel).subscribe(
+      response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Usuario editado con exito!',
+          text: 'Los datos podríar tardar en actualizarse',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.showModalI = !this.showModalI;
+      },
+      error => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'No se han podido editar los datos!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.showModalI = !this.showModalI;
       }
     )
   }
@@ -193,6 +221,10 @@ export class ProfileComponent implements OnInit {
 
   toggleModalE(){
     this.showModalE = !this.showModalE;
+  }
+
+  toggleModalI(){
+    this.showModalI = !this.showModalI;
   }
 
 }
