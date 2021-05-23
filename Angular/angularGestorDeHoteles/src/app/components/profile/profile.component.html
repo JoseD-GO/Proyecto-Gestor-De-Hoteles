@@ -34,7 +34,7 @@
                       <div class="grid grid-cols-3">
                           <div class="px-4 py-2 font-semibold">Nombre</div>
                           <div class="px-4 py-2">{{identityP.name}}</div>
-                          <div class="w-4 transform hover:text-purple-500 hover:scale-110">
+                          <div *ngIf="identityP.rol != 'ROL_ADMIN'" class="w-4 transform hover:text-purple-500 hover:scale-110">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalN()">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                             </svg>
@@ -43,7 +43,7 @@
                       <div class="grid grid-cols-3">
                           <div class="px-4 py-2 font-semibold">Apellido</div>
                           <div class="px-4 py-2">{{identityP.lastname}}</div>
-                          <div class="w-4 transform hover:text-purple-500 hover:scale-110">
+                          <div *ngIf="identityP.rol != 'ROL_ADMIN'" class="w-4 transform hover:text-purple-500 hover:scale-110">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalLN()">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                             </svg>
@@ -52,7 +52,7 @@
                       <div class="grid grid-cols-3">
                         <div class="px-4 py-2 font-semibold">Nombre de usuario</div>
                         <div class="px-4 py-2">{{identityP.username}}</div>
-                        <div class="w-4 transform hover:text-purple-500 hover:scale-110">
+                        <div *ngIf="identityP.rol != 'ROL_ADMIN'" class="w-4 transform hover:text-purple-500 hover:scale-110">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalU()">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                           </svg>
@@ -63,7 +63,7 @@
                           <div class="px-4 py-2">
                               <a class="text-blue-800">{{identityP.email}}</a>
                           </div>
-                          <div class="w-4 transform hover:text-purple-500 hover:scale-110">
+                          <div *ngIf="identityP.rol != 'ROL_ADMIN'" class="w-4 transform hover:text-purple-500 hover:scale-110">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="toggleModalE()">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                             </svg>
@@ -71,7 +71,7 @@
                       </div>
                   </div>
               </div>
-              <button
+              <button *ngIf="identityP.rol != 'ROL_ADMIN'" (click)="confirmDelete()"
               class="block w-full text-red-800 text-sm font-semibold rounded-lg hover:bg-red-300 focus:outline-none focus:shadow-outline hover:shadow-xs p-3 my-4">Eliminar cuenta</button>
           </div>
           <!-- End of about section -->

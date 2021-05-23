@@ -50,6 +50,12 @@ export class UserService {
     return this._http.put(`${this.url}/editEmail`, params, { headers: headersToken })
   }
 
+  deleteUser(): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', this.getToken())
+
+    return this._http.delete(`${this.url}/deleteUser`, { headers: headersToken })
+  }
+
   getUsers(): Observable<any>{
     let headersToken = this.headersVar.set('Authorization', this.getToken())
 

@@ -139,6 +139,36 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  confirmDelete(){
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: "No podra revitir esta acción",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Eliminado!',
+          'El usuario se ha eliminado correctamente',
+          'success'
+        )
+        this.deleteUser()
+      }
+    })
+  }
+
+  deleteUser(){
+    this._userService.deleteUser().subscribe(
+      response => {
+        localStorage.clear()
+        this._router.navigate(['/login'])
+      }
+    )
+  }
+
   getIdentity(){
     var identityD = JSON.parse(localStorage.getItem('identity'));
     if(identityD != 'undefined'){
