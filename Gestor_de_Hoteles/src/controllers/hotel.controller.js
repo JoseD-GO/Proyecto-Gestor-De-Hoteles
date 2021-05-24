@@ -32,7 +32,7 @@ function editHotel(req,res){
     var idHotel = req.params.idHotel
     var params = req.body
 
-    if(req.user.rol != 'ROL_ADMIN_HOTEL') return res.status(500).send({ message: 'You dont have the permissions' })
+    if(req.user.rol === 'ROL_USER') return res.status(500).send({ message: 'You dont have the permissions' })
 
     /*Hotel.findById(idHotel, (err, hotelFound) => {
         if(req.user.sub != hotelFound.idAdminHotel) return res.status(500).send({ message: 'You dont have the permissions' })

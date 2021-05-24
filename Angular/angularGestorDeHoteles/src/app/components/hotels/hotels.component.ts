@@ -14,10 +14,12 @@ import Swal from "sweetalert2";
 })
 export class HotelsComponent implements OnInit {
   public token;
+  public hotelModel: Hotel;
   public HotelModelGet: Hotel;
   public HotelModelAdd: Hotel;
   public UsersAdminHotel: User;
   public showModal = false;
+  public showModalE = false;
   public identity;
   public rol;
   public num = 0;
@@ -37,6 +39,7 @@ export class HotelsComponent implements OnInit {
       this.rol = 'ROL_USER';
     }
     this.HotelModelAdd = new Hotel('','','','','',0,0,[{number: 0, numberBeds: 0, status: '',price: 0}],'','')
+    this.hotelModel = new Hotel('','','','','',0,0,[{number: 0, numberBeds: 0, status: '',price: 0}],'','');
    }
 
   ngOnInit(): void {
@@ -96,8 +99,45 @@ export class HotelsComponent implements OnInit {
     )
   }
 
+  getHotelID(idHotel){
+    this._hotelService.getHotelID(this.token, idHotel).subscribe(
+      response => {
+        this.hotelModel = response.hotelFound
+      }
+    )
+  }
+
+  editHotel(){
+    this._hotelService.editHotel(this.token, this.hotelModel).subscribe(
+      response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Hotel editado con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.showModalE = !this.showModalE;
+        this.getHotels()
+      },
+      error => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Ha ocurrido un error!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+  }
+
   toggleModal(){
     this.showModal = !this.showModal;
+  }
+
+  toggleModalE(){
+    this.showModalE = !this.showModalE;
   }
 
   /*detailsHotel(idHotel){
