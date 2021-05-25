@@ -75,7 +75,7 @@ function addRoom(req,res){
         Hotel.findByIdAndUpdate(hotelID, {$inc:{ numberOfRooms: +1 }}, { new: true, useFindAndModify: false }, (err, hotelFound) =>{
             if(err) return res.status(500).send({ message: 'Error in the request' })
             var numberA =  hotelFound.numberOfRooms;
-            Hotel.findByIdAndUpdate(hotelID, { $push: { bedrooms: { number: numberA, numberBeds: params.numberBeds, price: params.price } } },
+            Hotel.findByIdAndUpdate(hotelID, { $push: { bedrooms: { name: params.name, number: numberA, numberBeds: params.numberBeds, description: params.description, price: params.price } } },
                 {new: true, useFindAndModify: false}, (err, addedRoom) => {
                     if(err) return res.status(500).send({ message: 'Error in the request' })
                     if(!addedRoom) return res.status(500).send({ message: 'Error savig room' })

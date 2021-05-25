@@ -19,6 +19,7 @@ import Swal from "sweetalert2";
 })
 export class DetailsHotelComponent implements OnInit {
   public hotelModel;
+  public roomsHotel;
   public events;
   public services;
   public token;
@@ -35,8 +36,16 @@ export class DetailsHotelComponent implements OnInit {
   public showModalS = false;
   public showModalSAdd = false;
   public showModalSEdit = false;
+  public showModalH = false;
   public identity;
   public typesGet: EventType;
+  public room = {
+    idHotel: '',
+    name: '',
+    numberBeds: 0,
+    description: '',
+    price: 0
+  }
 
   constructor(
     public _userService: UserService,
@@ -221,6 +230,32 @@ export class DetailsHotelComponent implements OnInit {
     )
   }
 
+  getRoomsHotel(idHotel){
+    this._hotelService.getRoomsHotel(this.token, idHotel).subscribe(
+      response => {
+        this.roomsHotel = response.bedrooms;
+      }
+    )
+  }
+
+  addRoom(){
+    this.room.idHotel = String(this.idHotelRoute)
+    this._hotelService.addRoomHotel(this.token, this.room).subscribe(
+      response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Habitación agregada con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.showModalH = !this.showModalH;
+        this.getHotelID(this.idHotelRoute)
+
+      }
+    )
+  }
+
   toggleModal(){
     this.showModal = !this.showModal;
   }
@@ -243,5 +278,9 @@ export class DetailsHotelComponent implements OnInit {
 
   toggleModalSEdit(){
     this.showModalSEdit = !this.showModalSEdit;
+  }
+
+  toggleModalH(){
+    this.showModalH = !this.showModalH;
   }
 }

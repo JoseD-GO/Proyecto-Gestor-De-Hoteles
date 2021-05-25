@@ -11,8 +11,10 @@ var HotelSchema = Schema({
     popularity: { type: Number, default: 0 },
     numberOfRooms: { type: Number, default: 0 },
     bedrooms:[{
+        name: String,
         number: { type: Number, default: 0 },
         numberBeds: { type: Number, default: 0 },
+        description: String,
         status: String,
         price: { type: Number, default: 0 }
     }],

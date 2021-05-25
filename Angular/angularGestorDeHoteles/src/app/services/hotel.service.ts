@@ -13,37 +13,51 @@ export class HotelService {
 
   constructor(public _http: HttpClient) {
     this.url = GLOBAL.url;
-   }
+  }
 
-   getHotels(token): Observable<any>{
+  getHotels(token): Observable<any>{
      let headersToken = this.headersVar.set('Authorization', token);
 
      return this._http.get(`${this.url}/getHotels`, { headers: headersToken })
-   }
+  }
 
-   addHotel(hotel: Hotel, token): Observable<any>{
+  addHotel(hotel: Hotel, token): Observable<any>{
     let headersToken = this.headersVar.set('Authorization', token);
     let params = JSON.stringify(hotel);
 
     return this._http.post(`${this.url}/addHotel`, params, { headers: headersToken })
-   }
+  }
 
-   getHotelID(token, id: string): Observable<any>{
+  getHotelID(token, id: string): Observable<any>{
      let headersToken = this.headersVar.set('Authorization', token)
 
     return this._http.get(`${this.url}/getHotelID/${id}`, { headers: headersToken })
-   }
+  }
 
-   editHotel(token, hotel: Hotel): Observable<any>{
+  editHotel(token, hotel: Hotel): Observable<any>{
     let headersToken = this.headersVar.set('Authorization', token)
     let params = JSON.stringify(hotel);
 
     return this._http.put(`${this.url}/editHotel/${hotel._id}`, params, { headers: headersToken })
-   }
+  }
 
-   deleteHotel(token, idHotel: string): Observable<any>{
+  deleteHotel(token, idHotel: string): Observable<any>{
     let headersToken = this.headersVar.set('Authorization', token)
 
     return this._http.delete(`${this.url}/deleteHotel/${idHotel}`, { headers: headersToken })
-   }
+  }
+
+  getRoomsHotel(token, idHotel: string): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+
+    return this._http.get(`${this.url}/getRoomsHotel/${idHotel}`, { headers: headersToken })
+  }
+
+  addRoomHotel(token, room): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+    let params = JSON.stringify(room)
+
+    return this._http.put(`${this.url}/addRoom/${room.idHotel}`, params, { headers: headersToken })
+  }
+
 }
