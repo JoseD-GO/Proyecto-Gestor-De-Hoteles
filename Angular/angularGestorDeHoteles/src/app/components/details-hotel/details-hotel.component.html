@@ -52,7 +52,7 @@
         <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '2'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '2'"><a>Eventos</a></li>
         <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '3'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '3'"><a>Servicios</a></li>
         <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '4'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '4'"><a>Reservación</a></li>
-        <li *ngIf="identity.rol === 'ROL_ADMIN'" [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '5'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '5'"><a>Habitaciones</a></li>
+        <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '5'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '5'"><a>Habitaciones</a></li>
       </ul>
 
       <!-- Tab Contents -->
