@@ -40,4 +40,10 @@ export class HotelService {
 
     return this._http.put(`${this.url}/editHotel/${hotel._id}`, params, { headers: headersToken })
    }
+
+   deleteHotel(token, idHotel: string): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+
+    return this._http.delete(`${this.url}/deleteHotel/${idHotel}`, { headers: headersToken })
+   }
 }

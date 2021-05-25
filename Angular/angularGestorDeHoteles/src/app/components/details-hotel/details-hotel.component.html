@@ -142,6 +142,11 @@
       </div>
     </div>
   </footer>
+  <div *ngIf="identity.rol === 'ROL_ADMIN'">
+    <button class="block w-full text-red-800 text-sm font-semibold rounded-lg hover:bg-red-300 focus:outline-none focus:shadow-outline hover:shadow-xs p-3 my-4" (click)="confirmDelete()">
+      Eliminar hotel
+    </button>
+  </div>
 </div>
 
 <!--Modal Evento-->

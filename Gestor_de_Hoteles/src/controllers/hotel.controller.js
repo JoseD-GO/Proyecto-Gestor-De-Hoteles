@@ -50,6 +50,18 @@ function editHotel(req,res){
     })
 }
 
+function deleteHotel(req,res){
+    var idHotel = req.params.idHotel
+
+    if(req.user.rol === 'ROL_USER') return res.status(500).send({ message: 'You dont have the permissions' })
+
+    Hotel.findByIdAndDelete(idHotel, (err, deletedHotel) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!deletedHotel) return res.status(500).send({ message: 'Error deleting the hotel' })
+        return res.status(200).send({ deletedHotel })
+    })
+}
+
 function addRoom(req,res){
     var hotelID = req.params.IdHotel
     var params = req.body
@@ -105,6 +117,7 @@ function getHotelID(req,res){
 module.exports = {
     addHotel,
     editHotel,
+    deleteHotel,
     addRoom,
     getRoomsHotel,
     getHotels,

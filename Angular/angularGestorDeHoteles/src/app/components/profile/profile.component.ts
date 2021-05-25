@@ -170,7 +170,7 @@ export class ProfileComponent implements OnInit {
   confirmDelete(){
     Swal.fire({
       title: '¿Esta seguro?',
-      text: "No podra revitir esta acción",
+      text: "No podra revertir esta acción",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

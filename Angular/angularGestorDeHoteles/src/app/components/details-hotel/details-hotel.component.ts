@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event.model';
 import { EventType } from 'src/app/models/eventtype.model';
 import { Hotel } from 'src/app/models/hotel.model';
@@ -44,6 +44,7 @@ export class DetailsHotelComponent implements OnInit {
     public _eventService: EventService,
     public _eventTypeService: EventtypeService,
     public _serviceService: ServiceService,
+    private _router: Router,
     public _activetedRoute: ActivatedRoute
   ) {
     this.token = this._userService.getToken()
@@ -187,6 +188,35 @@ export class DetailsHotelComponent implements OnInit {
         })
         this.showModalSEdit = !this.showModalSEdit;
         this.getServicesIdHotel(this.idHotelRoute)
+      }
+    )
+  }
+
+  confirmDelete(){
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: "No podra revertir esta acción",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+         Swal.fire(
+          'Eliminado!',
+          'El hotel se ha eliminado correctamente',
+          'success'
+        )
+        this.deleteHotel(this.idHotelRoute)
+      }
+    })
+  }
+
+  deleteHotel(idHotel){
+    this._hotelService.deleteHotel(this.token, idHotel).subscribe(
+      response => {
+        this._router.navigate(['/hotels'])
       }
     )
   }

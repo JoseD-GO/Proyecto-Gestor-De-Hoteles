@@ -11,6 +11,7 @@ api.put('/addRoom/:IdHotel', md_authentication.ensureAuth, hotelController.addRo
 api.get('/getRoomsHotel/:IdHotel', md_authentication.ensureAuth, hotelController.getRoomsHotel);
 api.get('/getHotels', md_authentication.ensureAuth, hotelController.getHotels)
 api.put('/editHotel/:idHotel', md_authentication.ensureAuth, hotelController.editHotel)
+api.delete('/deleteHotel/:idHotel', md_authentication.ensureAuth, hotelController.deleteHotel)
 api.get('/getHotelID/:idHotel', md_authentication.ensureAuth, hotelController.getHotelID)
 
 module.exports = api
