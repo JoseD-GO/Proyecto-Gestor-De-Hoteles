@@ -19,8 +19,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPopularHotel()
-    console.log(this._userService.getToken());
-
   }
 
   getPopularHotel(){

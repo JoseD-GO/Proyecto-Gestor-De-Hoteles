@@ -15,7 +15,7 @@ var HotelSchema = Schema({
         number: { type: Number, default: 0 },
         numberBeds: { type: Number, default: 0 },
         description: String,
-        status: String,
+        status: Boolean,
         price: { type: Number, default: 0 }
     }],
     imgLink: String,

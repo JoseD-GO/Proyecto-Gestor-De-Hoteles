@@ -66,7 +66,7 @@ function addRoom(req,res){
     var hotelID = req.params.IdHotel
     var params = req.body
 
-    if(req.user.rol != 'ROL_ADMIN') return res.status(500).send({ message: 'You dont have the permissions' })
+    if(req.user.rol === 'ROL_USER') return res.status(500).send({ message: 'You dont have the permissions' })
 
     Hotel.findById(hotelID, (err, hotelFounded) =>{
         if(err) return res.status(500).send({ message: 'Error in the request' })
@@ -114,6 +114,18 @@ function getHotelID(req,res){
     })
 }
 
+function getHotelIdAdminHotel(req,res){
+    var idAdminHotel = req.params.idAdminHotel
+
+    if(req.user.rol != 'ROL_ADMIN_HOTEL') return res.status(500).send({ message: 'You dont have the permissions' })
+
+    Hotel.find({idAdminHotel: idAdminHotel}).populate('idAdminHotel',  'name lastname username image').exec((err, hotelFound) =>{
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+        if(!hotelFound) return res.status(500).send({ message: 'No hotel was found' })
+        return res.status(200).send({ hotelFound })
+    })
+}
+
 function getPopularHotels(req,res){
     Hotel.aggregate([
         {
@@ -139,5 +151,6 @@ module.exports = {
     getRoomsHotel,
     getHotels,
     getHotelID,
+    getHotelIdAdminHotel,
     getPopularHotels
 }

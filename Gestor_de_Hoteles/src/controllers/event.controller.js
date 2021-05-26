@@ -52,7 +52,7 @@ function editEvent(req,res){
 function getEventsHotel(req,res){
     var idHotel = req.params.idHotel;
 
-    Event.find({idHotel: idHotel}, (err, eventsFound) => {
+    Event.find({idHotel: idHotel}).populate('idEventType', 'name').exec((err, eventsFound) => {
         if(err) return res.status(500).send({ message: 'Error in the request' })
         if(!eventsFound) return res.status(500).send({ message: 'Error getting the events' })
         return res.status(200).send({ eventsFound })

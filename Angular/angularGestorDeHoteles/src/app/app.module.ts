@@ -14,6 +14,8 @@ import { HotelsComponent } from './components/hotels/hotels.component';
 import { DetailsHotelComponent } from './components/details-hotel/details-hotel.component';
 import { EventsTypesComponent } from './components/events-types/events-types.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MyHotelComponent } from './components/my-hotel/my-hotel.component';
+import { MyHotelDetailsComponent } from './components/my-hotel-details/my-hotel-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     HotelsComponent,
     DetailsHotelComponent,
     EventsTypesComponent,
-    ProfileComponent
+    ProfileComponent,
+    MyHotelComponent,
+    MyHotelDetailsComponent
   ],
   imports: [
     BrowserModule,
