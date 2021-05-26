@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event.model';
 import { EventType } from 'src/app/models/eventtype.model';
 import { Hotel } from 'src/app/models/hotel.model';
+import { Reservation } from 'src/app/models/reservation.model';
 import { Service } from 'src/app/models/service.model';
 import { EventService } from 'src/app/services/event.service';
 import { EventtypeService } from 'src/app/services/eventtype.service';
 import { HotelService } from 'src/app/services/hotel.service';
+import { ReservationService } from 'src/app/services/reservation.service';
 import { ServiceService } from 'src/app/services/service.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from "sweetalert2";
@@ -46,6 +48,7 @@ export class DetailsHotelComponent implements OnInit {
     description: '',
     price: 0
   }
+  public reservationModelAdd: Reservation;
 
   constructor(
     public _userService: UserService,
@@ -53,6 +56,7 @@ export class DetailsHotelComponent implements OnInit {
     public _eventService: EventService,
     public _eventTypeService: EventtypeService,
     public _serviceService: ServiceService,
+    public _reservationService: ReservationService,
     private _router: Router,
     public _activetedRoute: ActivatedRoute
   ) {
@@ -63,6 +67,7 @@ export class DetailsHotelComponent implements OnInit {
     this.idEvent = new Event('','','','','','','')
     this.serviceModelGet = new Service('','','',0,'')
     this.serviceModelAdd = new Service('','','',0,'')
+    this.reservationModelAdd = new Reservation('','','','','','')
     this.identity = this._userService.getIdentity()
    }
 
@@ -252,6 +257,31 @@ export class DetailsHotelComponent implements OnInit {
         this.showModalH = !this.showModalH;
         this.getHotelID(this.idHotelRoute)
 
+      }
+    )
+  }
+
+  addReservation(idRoom){
+    this._reservationService.addReserve(this.token, this.reservationModelAdd, idRoom).subscribe(
+      response => {
+        this.reservationModelAdd.dateIn = '';
+        this.reservationModelAdd.dateOut = '';
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Reservación creada con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      },
+      error => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Fechas no válidas o habitación ya reservada',
+          showConfirmButton: true,
+          timer: 1500
+        })
       }
     )
   }

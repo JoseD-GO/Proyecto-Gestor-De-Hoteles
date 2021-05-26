@@ -26,4 +26,11 @@ export class ReservationService {
 
     return this._http.delete(`${this.url}/cancelReservation/${idReservation}`, { headers: headersToken })
   }
+
+  addReserve(token, reservation: Reservation, idRoom: string): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token);
+    let params = JSON.stringify(reservation);
+
+    return this._http.post(`${this.url}/addReserve/${idRoom}`, params, { headers: headersToken })
+  }
 }

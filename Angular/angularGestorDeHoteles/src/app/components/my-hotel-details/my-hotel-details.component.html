@@ -51,7 +51,6 @@
         <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '1'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '1'"><a>Información</a></li>
         <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '2'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '2'"><a>Eventos</a></li>
         <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '3'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '3'"><a>Servicios</a></li>
-        <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '4'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '4'"><a>Reservación</a></li>
         <li [ngClass]="{'-mb-px border-b-2 border-blue-400 text-black opacity-100': click == '5'}" class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50 cursor-pointer" (click)="click = '5'"><a>Habitaciones</a></li>
       </ul>
 
@@ -136,9 +135,6 @@
             border duration-200 ease-in-out
             border-green-600 transition" (click)="toggleModalSAdd()">Agregar Servicio</button>
           </div>
-        </div>
-        <div [ngClass]="{'hidden': click != '4'}" class="p-4">
-          Reservación
         </div>
         <div [ngClass]="{'hidden': click != '5'}" class="p-4">
           <!-- item card -->
