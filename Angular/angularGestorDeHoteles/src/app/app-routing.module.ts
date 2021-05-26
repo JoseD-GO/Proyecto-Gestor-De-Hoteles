@@ -7,6 +7,7 @@ import { HotelsComponent } from './components/hotels/hotels.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyHotelDetailsComponent } from './components/my-hotel-details/my-hotel-details.component';
 import { MyHotelComponent } from './components/my-hotel/my-hotel.component';
+import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReservationsComponent } from './components/reservations/reservations.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'my-hotel', component: MyHotelComponent },
   { path: 'my-hotel-details/:idHotel', component: MyHotelDetailsComponent },
   { path: 'reservations/:idHotel', component: ReservationsComponent },
+  { path: 'my-reservations/:username', component: MyReservationsComponent },
   { path: '**', component: LoginComponent }
 ];
 

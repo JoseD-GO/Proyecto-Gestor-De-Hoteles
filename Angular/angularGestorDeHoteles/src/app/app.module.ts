@@ -17,6 +17,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MyHotelComponent } from './components/my-hotel/my-hotel.component';
 import { MyHotelDetailsComponent } from './components/my-hotel-details/my-hotel-details.component';
 import { ReservationsComponent } from './components/reservations/reservations.component';
+import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReservationsComponent } from './components/reservations/reservations.co
     ProfileComponent,
     MyHotelComponent,
     MyHotelDetailsComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    MyReservationsComponent
   ],
   imports: [
     BrowserModule,

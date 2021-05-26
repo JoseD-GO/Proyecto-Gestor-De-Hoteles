@@ -33,4 +33,10 @@ export class ReservationService {
 
     return this._http.post(`${this.url}/addReserve/${idRoom}`, params, { headers: headersToken })
   }
+
+  getReservationUser(token, idUser: string): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token);
+
+    return this._http.get(`${this.url}/getReservationsUser/${idUser}`, { headers: headersToken })
+  }
 }

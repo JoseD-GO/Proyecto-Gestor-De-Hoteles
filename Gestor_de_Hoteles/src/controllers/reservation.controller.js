@@ -91,11 +91,11 @@ function getReservationUser(req,res){
 
     if(req.user.rol === 'ROL_ADMIN') return res.status(500).send({ message: 'You dont have the permissions' })
 
-    Reservation.find({idUser: idUser}, (err, reservationsFoudn) => {
+    Reservation.find({idUser: idUser}).populate('idHotel', 'name address phoneNumber').exec((err, reservationsFound) => {
         if(err) return res.status(500).send({ message: 'Error in the request' })
-        if(!reservationsFoudn) return res.status(500).send({ message: 'Error getting the reservation' })
+        if(!reservationsFound) return res.status(500).send({ message: 'Error getting the reservation' })
 
-        return res.status(200).send({ reservationsFoudn })
+        return res.status(200).send({ reservationsFound })
     })
 }
 
