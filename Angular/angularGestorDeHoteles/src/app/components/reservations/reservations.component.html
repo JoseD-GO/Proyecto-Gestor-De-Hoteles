@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div>
+  <h1 class="text-6xl text-center">Reservaciones Hotel {{hotelModel.name}}</h1>
+</div>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-4 justify-center md:justify-between">
+      <div class="xl:w-2/4 md:w-3/4 w-3/4 p-4 shadow-md" *ngFor="let reserv of reservationModel">
+        <div class="border border-gray-200 p-6 rounded-lg">
+          <div class="md:w-auto md:mb-0 mb-6 flex-shrink-0 flex justify-between mx-4">
+            <div class="grid text-center">
+              <span class="font-semibold title-font text-gray-700">Fecha de entrada</span>
+              <span class="mt-1 text-gray-500 text-sm">{{reserv.dateIn}}</span>
+            </div>
+            <div class="grid text-center">
+              <span class="font-semibold title-font text-gray-700">Fecha de salida</span>
+              <span class="mt-1 text-gray-500 text-sm">{{reserv.dateOut}}</span>
+            </div>
+          </div>
+          <div class="text-center mt-4 border-t-2 border-gray-200">
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{reserv.idUser.name}} {{reserv.idUser.lastname}}</h2>
+            <p class="leading-relaxed text-base">{{reserv.idUser.username}}</p>
+          </div>
+        </div>
+        <div>
+          <button class="block w-full text-red-800 text-sm font-semibold rounded-lg hover:bg-red-300 focus:outline-none focus:shadow-outline hover:shadow-xs p-3 my-4" (click)="confirmCancel(reserv._id)">
+            Cancelar reservación
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

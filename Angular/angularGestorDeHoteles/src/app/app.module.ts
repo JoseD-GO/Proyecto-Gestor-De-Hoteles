@@ -16,6 +16,7 @@ import { EventsTypesComponent } from './components/events-types/events-types.com
 import { ProfileComponent } from './components/profile/profile.component';
 import { MyHotelComponent } from './components/my-hotel/my-hotel.component';
 import { MyHotelDetailsComponent } from './components/my-hotel-details/my-hotel-details.component';
+import { ReservationsComponent } from './components/reservations/reservations.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MyHotelDetailsComponent } from './components/my-hotel-details/my-hotel-
     EventsTypesComponent,
     ProfileComponent,
     MyHotelComponent,
-    MyHotelDetailsComponent
+    MyHotelDetailsComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,

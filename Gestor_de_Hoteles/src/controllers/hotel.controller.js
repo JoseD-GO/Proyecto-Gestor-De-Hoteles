@@ -3,6 +3,7 @@
 const hotelModel = require('../models/hotel.model')
 
 const Hotel = require('../models/hotel.model')
+const Reservation = require('../models/reservation.model')
 
 function addHotel(req,res){
     var hotelModel = new Hotel()
@@ -142,6 +143,20 @@ function getPopularHotels(req,res){
     })
 
 }
+
+/*function getReservationHotel(req,res){
+    var idHotel = req.params.idHotel
+
+    Hotel.findById(idHotel, (err, hotelFound) => {
+        if(err) return res.status(500).send({ message: 'Error in the request' })
+
+        Reservation.find({idHotel: hotelFound._id}, (err, reservationFound) => {
+            if(err) return res.status(500).send({ message: 'Error in the request' })
+            if(!reservationFound) return res.status(500).send({ message: 'Error gettin the reservations' })
+            return res.status(200).send({ reservationFound })
+        })
+    })
+}*/
 
 module.exports = {
     addHotel,

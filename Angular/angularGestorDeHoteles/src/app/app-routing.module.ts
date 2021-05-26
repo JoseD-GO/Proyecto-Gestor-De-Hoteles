@@ -9,6 +9,7 @@ import { MyHotelDetailsComponent } from './components/my-hotel-details/my-hotel-
 import { MyHotelComponent } from './components/my-hotel/my-hotel.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ReservationsComponent } from './components/reservations/reservations.component';
 import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'profile/:username', component: ProfileComponent },
   { path: 'my-hotel', component: MyHotelComponent },
   { path: 'my-hotel-details/:idHotel', component: MyHotelDetailsComponent },
+  { path: 'reservations/:idHotel', component: ReservationsComponent },
   { path: '**', component: LoginComponent }
 ];
 
