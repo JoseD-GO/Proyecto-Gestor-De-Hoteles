@@ -1,2 +1,49 @@
 <app-navbar></app-navbar>
-<h1>home</h1>
+<h1 class="text-5xl mt-4 ml-0 text-center md:text-justify md:ml-11">Populares</h1>
+<div class="flex items-center justify-center p-10">
+  <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2">
+    <!-- Tile 1 -->
+    <div class="flex flex-col bg-gray-300 rounded-lg p-4 m-2" *ngFor="let topH of popularHotels">
+      <!-- <div class="h-auto bg-gray-400 rounded-lg"><img class="h-40" [src]="topH.imgLink" [alt]="'img-hotel-'+topH.name"></div> -->
+      <div class="h-40 relative overflow-hidden">
+        <img class="absolute h-full w-full object-cover object-center" [src]="topH.imgLink"
+          [alt]="'img-hotel-'+topH.name" />
+      </div>
+      <div class="flex flex-col items-start mt-4">
+        <h4 class="text-xl font-semibold">{{topH.name}}</h4>
+        <div class="module line-clamp">
+          <p class="text-sm">{{topH.description}}</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2">
+        <div class="mt-3">
+          <button class="text-base rounded-l-none rounded-r-none border-l-1 border-r-1  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
+              hover:bg-green-700 hover:text-green-100
+              bg-green-100
+              text-green-700
+              border duration-200 ease-in-out
+              border-green-600 transition" [routerLink]="['/details-hotel', topH._id]">
+            <div class="flex leading-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-eye w-5 h-5 mr-1">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              Detalles
+            </div>
+          </button>
+        </div>
+        <div class="mt-3 flex flex-row items-center justify-end">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=""
+            viewBox="0 0 16 16">
+            <path
+              d="M 7.5 1.018 a 7 7 0 0 0 0.5 1.982 L 7.5 7.793 V 1.018 z m 1 0 V 7.5 h 6.482 A 7.001 7.001 0 0 0 8.5 1.018 z M 14.982 8.5 H 8.207 l -4.79 4.79 A 7 7 0 0 0 14.982 8.5 z M 0 8 a 8 8 0 1 1 16 0 A 8 8 0 0 1 0 8 z" />
+          </svg>
+          <span class="ml-4">{{topH.popularity}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="mx-11 w-auto border-1 border-gray-400 mb-8">

@@ -114,6 +114,23 @@ function getHotelID(req,res){
     })
 }
 
+function getPopularHotels(req,res){
+    Hotel.aggregate([
+        {
+            $project: { name: 1, address: 1, phoneNumber: 1, description: 1, imgLink: 1, idAdminHotel: 1, popularity: 1 }
+        },
+        {
+            $sort: { popularity: -1 }
+        },
+        {
+            $limit: 4
+        }
+    ]).exec((err, hotelsFound) => {
+        return res.status(200).send({ hotelsFound })
+    })
+
+}
+
 module.exports = {
     addHotel,
     editHotel,
@@ -121,5 +138,6 @@ module.exports = {
     addRoom,
     getRoomsHotel,
     getHotels,
-    getHotelID
+    getHotelID,
+    getPopularHotels
 }

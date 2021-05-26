@@ -35,17 +35,18 @@ export class LoginComponent implements OnInit {
   login(){
     this._usuarioService.login(this.userModel).subscribe(
       response => {
+        this.getToken()
         this.identity = response.userFound;
         localStorage.setItem('identity', JSON.stringify(this.identity));
-        this.getToken()
         Swal.fire({
           position: 'center',
           icon: 'success',
           title: 'Usuario logeado correctamente!',
-          showConfirmButton: false,
+          showConfirmButton: true,
           timer: 1500
+        }).then(()=>{
+          this._router.navigate(['/home'])
         })
-        this._router.navigate(['/home'])
       },
       error => {
         Swal.fire({
