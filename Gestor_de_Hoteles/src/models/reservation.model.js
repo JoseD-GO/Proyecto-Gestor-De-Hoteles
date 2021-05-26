@@ -7,9 +7,7 @@ var ReservationSchema = Schema({
     idUser: { type: Schema.Types.ObjectId, ref: 'Users' },
     dateIn: Date,
     dateOut: Date,
-    bedroom: [{
-        idRoom: { type: Schema.Types.ObjectId, ref: 'Hotels.bedrooms._id' }
-    }],
+    idRoom:  { type: Schema.Types.ObjectId, ref: 'Hotels.bedrooms._id' },
     idHotel: { type: Schema.Types.ObjectId, ref: 'Hotels' }
 })
 
