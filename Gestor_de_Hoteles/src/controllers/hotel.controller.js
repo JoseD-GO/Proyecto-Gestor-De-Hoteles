@@ -21,7 +21,7 @@ function addHotel(req,res){
 
         hotelModel.save((err, hotelSaved) =>{
             if(err) return res.status(500).send({ message: 'Error in the request' })
-            if(!hotelSaved) return res.status(500).send({ message: 'Error savig the hotel' })
+            if(!hotelSaved) return res.status(500).send({ message: 'Error saving the hotel' })
             return res.status(200).send({ hotelSaved })
         })
     }else {

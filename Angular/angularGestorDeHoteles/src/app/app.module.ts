@@ -18,6 +18,9 @@ import { MyHotelComponent } from './components/my-hotel/my-hotel.component';
 import { MyHotelDetailsComponent } from './components/my-hotel-details/my-hotel-details.component';
 import { ReservationsComponent } from './components/reservations/reservations.component';
 import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
+import { BillReservationComponent } from './components/bill-reservation/bill-reservation.component';
+import { MyBillsComponent } from './components/my-bills/my-bills.component';
+import { BillsHotelComponent } from './components/bills-hotel/bills-hotel.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { MyReservationsComponent } from './components/my-reservations/my-reserva
     MyHotelComponent,
     MyHotelDetailsComponent,
     ReservationsComponent,
-    MyReservationsComponent
+    MyReservationsComponent,
+    BillReservationComponent,
+    MyBillsComponent,
+    BillsHotelComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Hotel } from 'src/app/models/hotel.model';
 import { Reservation } from 'src/app/models/reservation.model';
+import { BillService } from 'src/app/services/bill.service';
 import { HotelService } from 'src/app/services/hotel.service';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,7 +12,7 @@ import Swal from "sweetalert2";
   selector: 'app-reservations',
   templateUrl: './reservations.component.html',
   styleUrls: ['./reservations.component.scss'],
-  providers: [ReservationService, UserService, HotelService]
+  providers: [ReservationService, UserService, HotelService, BillService]
 })
 export class ReservationsComponent implements OnInit {
   public token;
@@ -23,7 +24,9 @@ export class ReservationsComponent implements OnInit {
     public _reservationService: ReservationService,
     public _userService: UserService,
     public _hotelService: HotelService,
-    public _activetedRoute: ActivatedRoute) {
+    public _billService: BillService,
+    public _activetedRoute: ActivatedRoute,
+    private _router: Router) {
     this.token = this._userService.getToken()
     this.hotelModel = new Hotel('','','','','',0,0,[{number: 0, numberBeds: 0, status: '',price: 0}],'','')
   }
@@ -80,5 +83,23 @@ export class ReservationsComponent implements OnInit {
       }
     )
   }
+
+  createBill(idReservation){
+    this._billService.createBill(idReservation, this.token).subscribe(
+      response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Factura creada con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(()=>{
+          this._router.navigate(['/home'])
+        })
+
+      }
+    )
+  }
+
 
 }
