@@ -4,6 +4,8 @@ const hotelModel = require('../models/hotel.model')
 
 const Hotel = require('../models/hotel.model')
 const Reservation = require('../models/reservation.model')
+const Service = require('../models/service.model')
+const pdf = require("html-pdf")
 
 function addHotel(req,res){
     var hotelModel = new Hotel()
@@ -144,19 +146,68 @@ function getPopularHotels(req,res){
 
 }
 
-/*function getReservationHotel(req,res){
-    var idHotel = req.params.idHotel
+function createPDF(req,res){
+
+    var idHotel = req.params.idHotel;
+    var content='';
+    var save=[];
 
     Hotel.findById(idHotel, (err, hotelFound) => {
-        if(err) return res.status(500).send({ message: 'Error in the request' })
+        
+        var contentC=`<style>
+        body {
+            padding: 8px;
+        }
+        </style>
+        <body>
+        <div style="text-align: center;">
+        <img style="border-radius: 5px;"  width="500"  src="${hotelFound.imgLink}">
+        </div>
+        <h1 style="font-size: 50px; text-align: center;font-family: 'Verdana', Courier, monospace;">${hotelFound.name}</h1>
+        <hr>
+        <h1 style="font-size:  25px;text-align: left;font-family: 'Verdana', Courier, monospace;">Dirección:</h1>
+        <h2 style="font-size:  20px;text-align: left;font-family: 'Verdana', Courier, monospace;">${hotelFound.address}</h2>
+        <h1 style="font-size:  25px;text-align: left;font-family: 'Verdana', Courier, monospace;">Teléfono:</h1>
+        <h2 style="font-size:  20px;text-align: left;font-family: 'Verdana', Courier, monospace;">${hotelFound.phoneNumber}</h2>
+        <hr>
+        <h1 style="font-size:  25px;text-align: center;font-family: 'Verdana', Courier, monospace;">Servicios</h1>
+        <table style="margin-left: auto;margin-right: auto; font-size: 15px; width: 700px;
+     border-bottom: 2px black; border-collapse: collapse;font-family: 'Verdana', Courier, monospace; text-align: center;display: block;" border="1">
+        <tr style="background-color: #e0e0e0;">
+            <th>Nombre</th>
+            <th>Precio</th>
+        </tr>`;
 
-        Reservation.find({idHotel: hotelFound._id}, (err, reservationFound) => {
-            if(err) return res.status(500).send({ message: 'Error in the request' })
-            if(!reservationFound) return res.status(500).send({ message: 'Error gettin the reservations' })
-            return res.status(200).send({ reservationFound })
-        })
+        Service.find({idHotel: idHotel},(err,servicesFound)=>{
+
+            for (let i = 0; i < servicesFound.length; i++) {
+                
+                save[i]=`<tr>
+                    <td>${servicesFound[i].name}</td>
+                    <td>${servicesFound[i].price}</td>
+                </tr>`;
+                content+=save[i];
+            }
+
+            content=contentC+content+`</table></body>`
+
+            pdf.create(content).toFile(`./Servicios-Hotel-${hotelFound.name}.pdf`,function(err,res){
+                if(err){
+                    return console.log(err)
+                }else{
+                    return console.log(res)
+                }
+            })
+    
+            return res.status(200).send({mensaje: 'PDF created'})
+
+        })        
+
+        
     })
-}*/
+
+}
+
 
 module.exports = {
     addHotel,
@@ -167,5 +218,6 @@ module.exports = {
     getHotels,
     getHotelID,
     getHotelIdAdminHotel,
-    getPopularHotels
+    getPopularHotels,
+    createPDF
 }

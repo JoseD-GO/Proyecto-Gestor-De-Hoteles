@@ -15,5 +15,6 @@ api.delete('/deleteHotel/:idHotel', md_authentication.ensureAuth, hotelControlle
 api.get('/getHotelID/:idHotel', md_authentication.ensureAuth, hotelController.getHotelID)
 api.get('/getHotelIdAdminHotel/:idAdminHotel', md_authentication.ensureAuth, hotelController.getHotelIdAdminHotel)
 api.get('/getPopularHotels', md_authentication.ensureAuth, hotelController.getPopularHotels)
+api.get('/createPDF/:idHotel', md_authentication.ensureAuth, hotelController.createPDF)
 
 module.exports = api

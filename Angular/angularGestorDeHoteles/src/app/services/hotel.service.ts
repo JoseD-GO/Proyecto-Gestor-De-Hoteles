@@ -72,4 +72,10 @@ export class HotelService {
     return this._http.get(`${this.url}/getPopularHotels`, { headers: headersToken })
   }
 
+  createPDF(token, idHotel: String): Observable<any>{
+    let headersToken = this.headersVar.set('Authorization', token)
+
+    return this._http.get(`${this.url}/createPDF/${idHotel}`, { headers: headersToken })
+  }
+
 }

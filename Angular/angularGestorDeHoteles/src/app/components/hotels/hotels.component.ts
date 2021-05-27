@@ -132,6 +132,20 @@ export class HotelsComponent implements OnInit {
     )
   }
 
+  createPDF(idHotel){
+    this._hotelService.createPDF(this.token, idHotel).subscribe(
+      response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'PDF creado con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
+  }
+
   toggleModal(){
     this.showModal = !this.showModal;
   }
