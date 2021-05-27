@@ -19,6 +19,7 @@ export class ReservationsComponent implements OnInit {
   public hotelModel;
   public idHotelRoute;
   public reservationModel: Reservation;
+  public idBill;
 
   constructor(
     public _reservationService: ReservationService,
@@ -87,16 +88,15 @@ export class ReservationsComponent implements OnInit {
   createBill(idReservation){
     this._billService.createBill(idReservation, this.token).subscribe(
       response => {
+        this.idBill = response.billSaved._id
         Swal.fire({
           position: 'center',
           icon: 'success',
           title: 'Factura creada con exito!',
           showConfirmButton: false,
           timer: 1500
-        }).then(()=>{
-          this._router.navigate(['/home'])
         })
-
+        this._router.navigate(['/bill-reservation', this.idBill])
       }
     )
   }
